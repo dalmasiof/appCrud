@@ -1,0 +1,54 @@
+<form (submit)="onFormSubmit()" [formGroup]="cadForm">
+    <div fxLayout="column" fxLayoutAlign="space-between"  fxFlexOffset="20" fxFlex="60">
+        <mat-form-field>
+            <input formControlName="name" matInput placeholder="Name">
+            <mat-error *ngIf="cadForm.controls.name.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error>                
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="email" formControlName="email" matInput placeholder="Email">
+            <mat-error *ngIf="cadForm.controls.email.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error>    
+            <mat-error *ngIf="cadForm.controls.email.hasError('email')">
+                Email incorrect
+            </mat-error>    
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="cpf" formControlName="cpf" matInput placeholder="CPF">
+            <mat-error *ngIf="cadForm.controls.cpf.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error> 
+
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="password" formControlName="password" type="password" matInput placeholder="Password">
+            <mat-error *ngIf="cadForm.controls.password.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error> 
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="confirmPassword" formControlName="confirmPassword"  type="password" matInput placeholder="Confirm Password">
+            <mat-error *ngIf="cadForm.controls.confirmPassword.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error> 
+        </mat-form-field>
+        <div>
+            Form validate: {{cadForm.valid}}
+        </div>
+        <span>
+            Form touched: {{cadForm.touched}}
+        </span>  <span>
+            Form dirty  : {{cadForm.dirty}}
+        </span>
+
+
+        <button [disabled]="!cadForm.valid" type="submit" mat-button>Submit</button>
+    </div>
+    
+</form>
