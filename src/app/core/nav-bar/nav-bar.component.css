@@ -1,0 +1,11 @@
+.navLabel{
+    font-size: 100%;
+}
+
+.navButton{
+margin-left: 2%;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
