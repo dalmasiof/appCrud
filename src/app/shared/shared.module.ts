@@ -5,12 +5,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule} from '@angular/material/icon';
-import { MatMenuModule} from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgBrazil, TextMask } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
+
+
 
 
 
@@ -26,8 +30,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatMenuModule,
 
-    FlexLayoutModule
+    FlexLayoutModule,
 
+    NgBrazil,
+    TextMaskModule
 
   ],
   exports: [
@@ -40,6 +46,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatMenuModule,
 
     FlexLayoutModule,
+    NgBrazil,
+    TextMaskModule
+
+    // TextMask.TextMaskModule,
 
   ]
 })

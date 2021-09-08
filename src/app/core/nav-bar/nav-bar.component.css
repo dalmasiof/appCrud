@@ -9,3 +9,7 @@ margin-left: 2%;
 .example-spacer {
     flex: 1 1 auto;
   }
+
+  .routeActive{
+      color: blue;
+  }
