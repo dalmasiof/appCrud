@@ -16,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgBrazil, TextMask } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ProductsService } from './Services/products.service';
+import { Store } from '../core/stores/cart.store';
 
 
 
@@ -26,6 +27,7 @@ import { ProductsService } from './Services/products.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    
 
     MatFormFieldModule,
     MatInputModule,
@@ -58,7 +60,8 @@ import { ProductsService } from './Services/products.service';
 
   ],
   providers:[
-    ProductsService
+    ProductsService,
+    
   ]
 })
 export class SharedModule { }

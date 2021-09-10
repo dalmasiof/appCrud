@@ -1,6 +1,6 @@
 <div  fxLayout="row" fxLayout.xs="column"
 fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2%" fxLayoutAlign="center"  fxFlexOffset="20" fxFlex="60" >
-    <app-card class="flex-container" *ngFor="let prod of products" [product]="prod">
+    <app-card class="flex-container" *ngFor="let prod of products | async" [product]="prod">
         
     </app-card>
 </div>

@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
+import { Store } from './stores/cart.store';
+import { CartModule } from '../modules/cart/cart.module';
 
 
 
@@ -26,13 +28,16 @@ import { SharedModule } from '../shared/shared.module';
     RouterModule,
     MatToolbarModule,
     SharedModule,
+    CartModule
   ],
   exports:[
     NavBarComponent,
-    FooterComponent,
-    
-    
+    FooterComponent ,
   ],
+  providers:[
+    Store,
+    
+  ]
   
 })
 export class CoreModule { }

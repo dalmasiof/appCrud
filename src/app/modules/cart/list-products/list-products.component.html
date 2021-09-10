@@ -1,1 +1,9 @@
-<p>Lista de produtos selecionados</p>
+
+<ng-container *ngFor="let prod of products | async">
+    <div *ngIf="prod.onCart">
+        <p>{{prod.imagem}}</p>
+        <p>{{prod.nome}}</p>
+        <p>{{prod.valor}}</p>
+    </div>
+</ng-container>
+
