@@ -7,12 +7,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule} from '@angular/material/dialog';
+
 
 
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgBrazil, TextMask } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ProductsService } from './Services/products.service';
 
 
 
@@ -29,6 +32,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatDialogModule,
 
     FlexLayoutModule,
 
@@ -44,13 +48,17 @@ import { TextMaskModule } from 'angular2-text-mask';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatDialogModule,
 
     FlexLayoutModule,
     NgBrazil,
-    TextMaskModule
+    TextMaskModule,
 
     // TextMask.TextMaskModule,
 
+  ],
+  providers:[
+    ProductsService
   ]
 })
 export class SharedModule { }

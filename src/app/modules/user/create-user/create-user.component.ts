@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgBrazilValidators, MASKS } from 'ng-brazil';
-import { User } from 'src/app/shared/Model/User';
+import { UserModel } from 'src/app/shared/Model/UserModel';
 import { utilsBr } from 'js-brasil';
 import { CustomValidators } from 'ng2-validation';
 
@@ -14,7 +14,7 @@ import { CustomValidators } from 'ng2-validation';
 export class CreateUserComponent implements OnInit {
 
   cadForm!: FormGroup
-  userModel!: User
+  userModel!: UserModel
   errorMesageRequired: string = "Please input something..."
 
   MASKS = MASKS;

@@ -1,28 +1,29 @@
 <mat-toolbar>
 
-    <span style="font-size: 15px !important;">
-        <button  mat-button routerLink="/">Home</button>
-    </span>
-    <span class="navButton">
-        
-        <button  mat-button [matMenuTriggerFor]="menuUser">User</button>
-        <mat-menu #menuUser="matMenu">
-            <button mat-menu-item>My User</button>
-            <button mat-menu-item>List</button>
-            <button mat-menu-item  routerLink="User/create">Create</button>
+  <span style="font-size: 15px !important;">
+    <button mat-button routerLink="/">Home</button>
+  </span>
+  <span class="navButton">
 
-          </mat-menu>
+    <button mat-button [matMenuTriggerFor]="menuUser">User</button>
+    <mat-menu #menuUser="matMenu">
+      <button mat-menu-item>My User</button>
+      <button mat-menu-item>List</button>
+      <button mat-menu-item routerLink="User/create">Create</button>
 
-        <button [matMenuTriggerFor]="menuItem" mat-button>Products</button>
-        <mat-menu #menuItem="matMenu">
-            <button mat-menu-item>List</button>
-            <button mat-menu-item>Create</button>
-          </mat-menu>
-        
-    </span>
+    </mat-menu>
 
-    <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" >
+    <button [matMenuTriggerFor]="menuItem" mat-button>Products</button>
+
+    <mat-menu #menuItem="matMenu">
+      <button mat-menu-item routerLink="Product/list">List</button>
+      <button mat-menu-item routerLink="Product/create">Create</button>
+    </mat-menu>
+
+  </span>
+
+  <span class="example-spacer"></span>
+  <button (click)="openDialog()" mat-icon-button class="example-icon favorite-icon">
     <mat-icon>shopping_cart</mat-icon>
   </button>
 
