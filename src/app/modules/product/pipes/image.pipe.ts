@@ -13,7 +13,7 @@ export class ImagePipe implements PipeTransform {
     if (imagem.length == 0 && substituir) {
         imagem = 'semCapa.jpg'
     }
-
+    
     return caminho + "/" + imagem
 }
 

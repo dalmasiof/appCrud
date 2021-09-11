@@ -96,7 +96,7 @@ describe('CardComponent', () => {
   it('should call to add cart', () => {
     let idParam = 1;
 
-    expect(component.addToCart(idParam)).toBeTruthy()
+    expect(component.addToCart(idParam)).toBeUndefined()
 
     productMocks.forEach((p) => {
       if (p.id == idParam) {
@@ -111,9 +111,8 @@ describe('CardComponent', () => {
 
   it('should call to remove cart', () => {
     let idParam = 1;
-    
-
-    expect(component.removeFromCart(idParam)).toBeTruthy()
+    // spyOn(component,'removeFromCart').call(idParam,(idParam))
+    expect(component.removeFromCart(idParam)).toBeUndefined()
 
     productMocks.forEach((prod) => {
       if (prod.id == idParam) {
