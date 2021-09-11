@@ -16,32 +16,34 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addToCart(id: number) {
+  addToCart(id: number):void {
     const list = this.store.value.productList;
-    debugger
+    
     list.forEach((prod: ProductModel) => {
       if (id === prod.id) {
         prod.onCart=true;
 
-      } 
+      }
+
     });
-    debugger
+    
 
     this.store.set('productList',list);
 
   }
-  removeFromCart(id: number) {
+  removeFromCart(id: number):void {
     const list = this.store.value.productList;
     debugger
     const prodLIst = list.forEach((prod: ProductModel) => {
       if (id === prod.id) {
         prod.onCart=false;
-
       } 
     });
     this.store.set('productList', prodLIst);
 
   }
+
+  
 
 
 

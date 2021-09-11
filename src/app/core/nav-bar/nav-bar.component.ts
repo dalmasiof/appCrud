@@ -15,11 +15,7 @@ export class NavBarComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ListProductsComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-
-    });
+    this.dialog.open(ListProductsComponent);
   }
 
 }
