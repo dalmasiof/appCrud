@@ -19,10 +19,10 @@ export class CreateUserComponent implements OnInit {
 
   MASKS = MASKS;
 
-  password = new FormControl('',[Validators.required,CustomValidators.min([6])])
+  password = new FormControl('',[Validators.required,CustomValidators.rangeLength([5, 9])])
   Confirmpassword = new FormControl('',
   [Validators.required
-  ,CustomValidators.min([6])
+  ,CustomValidators.rangeLength([5, 9])
   ,CustomValidators.equalTo(this.password)])
 
 

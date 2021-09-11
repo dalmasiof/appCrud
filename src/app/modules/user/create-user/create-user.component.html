@@ -1,5 +1,16 @@
+
+
 <form (submit)="onFormSubmit()" [formGroup]="cadForm">
+  
     <div fxLayout="column" fxLayoutAlign="space-between" fxFlexOffset="20" fxFlex="60">
+        <div>
+            <mat-label id="labelUser">
+                Create user
+            </mat-label>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
         <mat-form-field>
             <input formControlName="name" matInput placeholder="Name">
             <mat-error *ngIf="cadForm.controls.name.hasError('required')">
@@ -35,7 +46,7 @@
                 {{errorMesageRequired}}
             </mat-error>
             <mat-error *ngIf="cadForm.controls.password.hasError('rangeLength')">
-                Password have less then 6 caracters
+                Password have less then 5 caracters or more then 9
             </mat-error>
         </mat-form-field>
 
@@ -51,7 +62,7 @@
             </mat-error>
 
             <mat-error *ngIf="cadForm.controls.confirmPassword.hasError('rangeLength')">
-                Password have less then 6 caracters
+                Password have less then 5 caracters or more then 9
             </mat-error>
 
         </mat-form-field>

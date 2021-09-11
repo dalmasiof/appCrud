@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule} from '@angular/material/dialog';
+import { MatDividerModule} from '@angular/material/divider';
+
 
 
 
@@ -35,6 +37,7 @@ import { Store } from '../core/stores/cart.store';
     MatIconModule,
     MatMenuModule,
     MatDialogModule,
+    MatDividerModule,
 
     FlexLayoutModule,
 
@@ -51,6 +54,8 @@ import { Store } from '../core/stores/cart.store';
     MatIconModule,
     MatMenuModule,
     MatDialogModule,
+    MatDividerModule,
+
 
     FlexLayoutModule,
     NgBrazil,
