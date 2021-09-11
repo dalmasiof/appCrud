@@ -33,13 +33,16 @@ export class CardComponent implements OnInit {
   }
   removeFromCart(id: number):void {
     const list = this.store.value.productList;
+   
     debugger
-    const prodLIst = list.forEach((prod: ProductModel) => {
+   
+  list.forEach((prod: ProductModel) => {
       if (id === prod.id) {
         prod.onCart=false;
+        
       } 
     });
-    this.store.set('productList', prodLIst);
+    this.store.set('productList', list);
 
   }
 
