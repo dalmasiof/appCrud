@@ -41,11 +41,18 @@ export class CreateUserComponent implements OnInit {
 
 
   onFormSubmit() {
+    debugger
     this.userModel = Object.assign({}, this.cadForm.value);
    
     this.userSvc.Create(this.userModel).subscribe((x)=>{
       console.log(x);
-    })
+    },
+    (error=>{
+      console.error("Deu ruim"+error)
+    }),
+    ()=>
+    alert("Aki ira redirecionar")    
+    )
 
   }
 }

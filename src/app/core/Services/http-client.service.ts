@@ -1,38 +1,42 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IBaseRequest } from '../Interface/IBaseRequest';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
-@Injectable({
-  providedIn: 'root'
-})
-export class HttpClientService<T> implements IBaseRequest<T> {
+@Injectable()
+export class HttpClientService<T>{
 
+  baseUrl:string = environment.urlBaseAPI;
+
+  // const headers = new HttpHeaders();
+  //   headers.set('Content-Type', 'application/json; charset=utf-8');
+  
   constructor(private http: HttpClient) {  }
 
-  GetList(): Observable<T[]> {
-    return this.http.get<T[]>("");
+  GetList(path:string): Observable<T[]> {
+    return this.http.get<T[]>(`${this.baseUrl}${path}`);
   }
 
-  GetById(Id: number): Observable<T> {
-    return this.http.get<T>(`/${Id}`);
+  GetById(path:string,Id: number): Observable<T> {
+    return this.http.get<T>(`${this.baseUrl}${path}/${Id}`);
   }
 
-  Filter(objFilter: T): Observable<T[]> {
-    return this.http.post<T[]>("",objFilter);
-  }
-  
-  Create(toCreate: T): Observable<T> {
-    return this.http.post<T>("",toCreate);
+  Filter(path:string,objFilter: T): Observable<T[]> {
+    return this.http.post<T[]>(`${this.baseUrl}${path}`,objFilter);
   }
 
-  Update(toUpdate: T): Observable<T> {
-    return this.http.put<T>("",toUpdate);
+  Create(path:string,toCreate: T): Observable<T> {
+    return this.http.post<T>(`${this.baseUrl}${path}`,toCreate);
   }
 
-  Delete(Id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`/${Id}`);
+  Update(path:string,toUpdate: T): Observable<T> {
+    return this.http.put<T>(`${this.baseUrl}${path}`,toUpdate);
+  }
+
+  Delete(path:string,Id: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.baseUrl}${path}/${Id}`);
   }
 
   

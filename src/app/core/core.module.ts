@@ -11,6 +11,8 @@ import { MatInputModule} from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
 import { Store } from './stores/cart.store';
 import { CartModule } from '../modules/cart/cart.module';
+import { HttpClientService } from './Services/http-client.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
@@ -28,7 +30,8 @@ import { CartModule } from '../modules/cart/cart.module';
     RouterModule,
     MatToolbarModule,
     SharedModule,
-    CartModule
+    CartModule,
+    HttpClientModule
   ],
   exports:[
     NavBarComponent,
@@ -36,6 +39,7 @@ import { CartModule } from '../modules/cart/cart.module';
   ],
   providers:[
     Store,
+    HttpClientService,
     
   ]
   
