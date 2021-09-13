@@ -4,6 +4,7 @@ import { NgBrazilValidators, MASKS } from 'ng-brazil';
 import { UserModel } from 'src/app/shared/Model/UserModel';
 import { utilsBr } from 'js-brasil';
 import { CustomValidators } from 'ng2-validation';
+import { UserServiceService } from 'src/app/shared/Services/UserService/user-service.service';
 
 
 @Component({
@@ -27,23 +28,24 @@ export class CreateUserComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userSvc:UserServiceService) { }
 
   ngOnInit(): void {
     this.cadForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      cpf: ['', [Validators.required, NgBrazilValidators.cpf]],
-      password: this.password,
-      confirmPassword: this.Confirmpassword
+      Name: ['', Validators.required],
+      Email: ['', [Validators.required, Validators.email]],
+      PassWord: this.password,
+      ConfirmPassword: this.Confirmpassword
     })
   }
 
 
   onFormSubmit() {
-
-    this.userModel = Object.assign({}, this.cadForm.value)
-    console.log(this.userModel)
+    this.userModel = Object.assign({}, this.cadForm.value);
+   
+    this.userSvc.Create(this.userModel).subscribe((x)=>{
+      console.log(x);
+    })
 
   }
 }

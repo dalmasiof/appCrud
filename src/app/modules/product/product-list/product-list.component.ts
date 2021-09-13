@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ProductModel } from 'src/app/shared/Model/ProductModel';
-import { ProductsService } from 'src/app/shared/Services/products.service';
+import { ProductsService } from 'src/app/shared/Services/ProductsService/products.service';
 import { Store } from '../../../core/stores/cart.store';
 
 @Component({
@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productSvc.fillStore();
+    // this.productSvc.fillStore();
 
     this.fillList()
 

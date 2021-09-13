@@ -12,56 +12,45 @@
         <mat-divider></mat-divider>
         <br>
         <mat-form-field>
-            <input formControlName="name" matInput placeholder="Name">
-            <mat-error *ngIf="cadForm.controls.name.hasError('required')">
+            <input formControlName="Name" matInput placeholder="Name">
+            <mat-error *ngIf="cadForm.controls.Name.hasError('required')">
                 {{errorMesageRequired}}
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <input name="email" formControlName="email" matInput placeholder="Email">
-            <mat-error *ngIf="cadForm.controls.email.hasError('required')">
+            <input name="email" formControlName="Email" matInput placeholder="Email">
+            <mat-error *ngIf="cadForm.controls.Email.hasError('required')">
                 {{errorMesageRequired}}
             </mat-error>
-            <mat-error *ngIf="cadForm.controls.email.hasError('email')">
+            <mat-error *ngIf="cadForm.controls.Email.hasError('email')">
                 Email incorrect
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-            <input name="cpf" formControlName="cpf" matInput placeholder="CPF" 
-            cpf [textMask]="{mask: MASKS.cpf.textMask}">
-            <mat-error *ngIf="cadForm.controls.cpf.hasError('required')">
-                {{errorMesageRequired}}
-            </mat-error>
-            <mat-error *ngIf="cadForm.controls.cpf.hasError('cpf')">
-                CPF invalid...
-            </mat-error>
-
-        </mat-form-field>
 
         <mat-form-field>
-            <input name="password" formControlName="password" type="password" matInput placeholder="Password">
-            <mat-error *ngIf="cadForm.controls.password.hasError('required')">
+            <input name="password" formControlName="PassWord" type="password" matInput placeholder="Password">
+            <mat-error *ngIf="cadForm.controls.PassWord.hasError('required')">
                 {{errorMesageRequired}}
             </mat-error>
-            <mat-error *ngIf="cadForm.controls.password.hasError('rangeLength')">
+            <mat-error *ngIf="cadForm.controls.PassWord.hasError('rangeLength')">
                 Password have less then 5 caracters or more then 9
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <input name="confirmPassword" formControlName="confirmPassword" type="password" matInput
+            <input name="confirmPassword" formControlName="ConfirmPassword" type="password" matInput
                 placeholder="Confirm Password">
-            <mat-error *ngIf="cadForm.controls.confirmPassword.hasError('required')">
+            <mat-error *ngIf="cadForm.controls.ConfirmPassword.hasError('required')">
                 {{errorMesageRequired}}
             </mat-error>
             
-            <mat-error *ngIf="cadForm.controls.confirmPassword.hasError('equalTo')">
+            <mat-error *ngIf="cadForm.controls.ConfirmPassword.hasError('equalTo')">
                 Passwords not match...
             </mat-error>
 
-            <mat-error *ngIf="cadForm.controls.confirmPassword.hasError('rangeLength')">
+            <mat-error *ngIf="cadForm.controls.ConfirmPassword.hasError('rangeLength')">
                 Password have less then 5 caracters or more then 9
             </mat-error>
 
