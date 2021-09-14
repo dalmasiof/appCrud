@@ -1,5 +1,5 @@
-export interface UserToken
+export class UserToken
 {
-    Token:string
-    DateTime:Date
+    Token!:string
+    DateTime!:Date
 }

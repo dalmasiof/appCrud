@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgBrazilValidators, MASKS } from 'ng-brazil';
+import {  MASKS } from 'ng-brazil';
 import { UserModel } from 'src/app/shared/Model/UserModel';
-import { utilsBr } from 'js-brasil';
 import { CustomValidators } from 'ng2-validation';
-import { UserServiceService } from 'src/app/shared/Services/UserService/user-service.service';
+import { UserServiceService } from 'src/app/modules/user/services/user-service.service';
+import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-storage.service';
 
 
 @Component({
@@ -28,7 +29,10 @@ export class CreateUserComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private userSvc:UserServiceService) { }
+  constructor(private fb: FormBuilder
+    , private userSvc:UserServiceService
+    , private route:Router
+    ,private localstgrSvc:LocalStorageService) { }
 
   ngOnInit(): void {
     this.cadForm = this.fb.group({
@@ -45,13 +49,18 @@ export class CreateUserComponent implements OnInit {
     this.userModel = Object.assign({}, this.cadForm.value);
    
     this.userSvc.Create(this.userModel).subscribe((x)=>{
-      console.log(x);
+
+      if(this.localstgrSvc.getUser().token == undefined){
+        this.userSvc.Login(x).subscribe((x)=>{
+          this.route.navigateByUrl('')
+          this.localstgrSvc.setUser(x);
+        })
+      }
+
     },
     (error=>{
-      console.error("Deu ruim"+error)
-    }),
-    ()=>
-    alert("Aki ira redirecionar")    
+      console.error("Deu ruim "+error)
+    })    
     )
 
   }

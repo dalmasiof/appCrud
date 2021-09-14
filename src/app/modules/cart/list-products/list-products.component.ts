@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { ProductModel } from 'src/app/shared/Model/ProductModel';
-import { Store } from '../../../core/stores/cart.store';
 
 @Component({
   selector: 'app-list-products',
@@ -15,13 +14,13 @@ export class ListProductsComponent implements OnInit {
   productsList!: ProductModel[]
   produto!:ProductModel
 
-  constructor(private Store: Store) {
+  constructor() {
 
 
   }
 
   ngOnInit(): void {
-    this.products = this.Store.getProductList()
+    // this.products = this.Store.getProductList()
 
   }
 }

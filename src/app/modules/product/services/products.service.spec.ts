@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Store } from 'src/app/core/stores/cart.store';
+import { StoreService } from 'src/app/shared/Services/stores/loggedStore.service';
 import { ProductModel} from 'src/app/shared/Model/ProductModel';
 
 
@@ -17,7 +17,7 @@ describe('ProductsService', () => {
     TestBed.configureTestingModule({
       providers:[
         ProductsService,
-        Store
+        StoreService
       ],
       imports:[]
     });

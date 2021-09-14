@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IBaseRequest } from '../Interface/IBaseRequest';
 import { Observable } from 'rxjs';
+import { UserModel } from 'src/app/shared/Model/UserModel';
+import { UserToken } from 'src/app/shared/Model/UserToken';
 import { environment } from 'src/environments/environment';
 
 
@@ -37,6 +38,10 @@ export class HttpClientService<T>{
 
   Delete(path:string,Id: number): Observable<boolean> {
     return this.http.delete<boolean>(`${this.baseUrl}${path}/${Id}`);
+  }
+
+  Login(path:string,objUser:UserModel): Observable<UserToken> {
+    return this.http.post<UserToken>(`${this.baseUrl}${path}`,objUser);
   }
 
   

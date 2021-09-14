@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ProductModel } from 'src/app/shared/Model/ProductModel';
-import { Store } from 'src/app/core/stores/cart.store';
 import { IBaseRequest } from 'src/app/core/Interface/IBaseRequest';
 import { Observable } from 'rxjs';
-import { HttpClientService } from 'src/app/core/Services/http-client.service';
-import { ProductEndPoint } from '../../EndPoints/ProductEndPoint';
+import { HttpClientService } from 'src/app/core/Services/HttpClient/http-client.service';
+import { ProductEndPoint } from 'src/app/shared/EndPoints/ProductEndPoint';
 
 
 @Injectable()

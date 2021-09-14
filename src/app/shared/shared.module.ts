@@ -17,9 +17,7 @@ import { MatDividerModule} from '@angular/material/divider';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgBrazil, TextMask } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
-import { ProductsService } from './Services/ProductsService/products.service';
-import { Store } from '../core/stores/cart.store';
-import { UserServiceService } from './Services/UserService/user-service.service';
+import { LocalStorageService } from './Services/LocalStorage/local-storage.service';
 
 
 
@@ -66,8 +64,8 @@ import { UserServiceService } from './Services/UserService/user-service.service'
 
   ],
   providers:[
-    ProductsService,
-    UserServiceService
+
+    LocalStorageService,
     
   ]
 })

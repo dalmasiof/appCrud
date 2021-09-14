@@ -5,7 +5,7 @@ import { ListProductsComponent } from 'src/app/modules/cart/list-products/list-p
 
 import { NavBarComponent } from './nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Store } from '../stores/cart.store';
+import { StoreService } from '../../shared/Services/stores/loggedStore.service';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -20,7 +20,7 @@ describe('NavBarComponent', () => {
         BrowserAnimationsModule,
       ],
       providers:[
-        Store
+        StoreService
       ]
     })
     .compileComponents();

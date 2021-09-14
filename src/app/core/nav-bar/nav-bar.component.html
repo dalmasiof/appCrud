@@ -5,13 +5,21 @@
   </span>
   <span class="navButton">
 
+    
+    <button *ngIf="!logged" mat-button routerLink="User/login">Login</button>
+    <ng-container *ngIf="logged">
+      <button  mat-button class="danger" routerLink="User/login">
+        <mat-icon>delete</mat-icon>Exit</button>
+
     <button mat-button [matMenuTriggerFor]="menuUser">User</button>
     <mat-menu #menuUser="matMenu">
       <button mat-menu-item>My User</button>
-      <button mat-menu-item>List</button>
+      <button mat-menu-item routerLink="User/list">List</button>
       <button mat-menu-item routerLink="User/create">Create</button>
-
     </mat-menu>
+    </ng-container>
+
+    
 
     <button [matMenuTriggerFor]="menuItem" mat-button>Products</button>
 

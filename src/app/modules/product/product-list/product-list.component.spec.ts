@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store } from 'src/app/core/stores/cart.store';
+import { StoreService } from 'src/app/shared/Services/stores/loggedStore.service';
 import { ProductsService } from 'src/app/shared/Services/products.service';
 
 import { ProductListComponent } from './product-list.component';
@@ -13,7 +13,7 @@ describe('ProductListComponent', () => {
       declarations: [ ProductListComponent ],
       providers:[
         ProductsService,
-        Store
+        StoreService
       ]
     })
     .compileComponents();

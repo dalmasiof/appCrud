@@ -9,10 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
-import { Store } from './stores/cart.store';
 import { CartModule } from '../modules/cart/cart.module';
-import { HttpClientService } from './Services/http-client.service';
+import { HttpClientService } from './Services/HttpClient/http-client.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BaseGuard } from './Services/guards/base.guard';
+import { LoggedUserService } from './Services/loggedUser/logged-user.service';
 
 
 
@@ -38,8 +39,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FooterComponent ,
   ],
   providers:[
-    Store,
+    // StoreService,
     HttpClientService,
+    BaseGuard,
+    LoggedUserService
     
   ]
   
