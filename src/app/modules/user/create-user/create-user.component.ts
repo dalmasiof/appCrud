@@ -43,22 +43,22 @@ export class CreateUserComponent implements OnInit {
       PassWord: this.password,
       ConfirmPassword: this.Confirmpassword
     })
+
+
   }
 
 
   onFormSubmit() {
-    debugger
+    
     this.userModel = Object.assign({}, this.cadForm.value);
    
     this.userSvc.Create(this.userModel).subscribe((x)=>{
-
-      if(this.localstgrSvc.getUser().token == undefined){
-        this.userSvc.Login(x).subscribe((x)=>{
-          this.route.navigateByUrl('')
-          this.localstgrSvc.setUser(x);
-        })
+      if(!this.localstgrSvc.getUser()){
+        this.route.navigateByUrl('User/login')
       }
 
+      this.toastr.success("Account created with success!")  
+      this.cadForm.reset()
     },
     (error=>{
       debugger

@@ -25,9 +25,12 @@
 
     <mat-menu #menuItem="matMenu">
       <button mat-menu-item routerLink="Product/list">List</button>
-      <button mat-menu-item routerLink="Product/create">Create</button>
+      <button *ngIf="logged" mat-menu-item routerLink="Product/create">Create</button>
     </mat-menu>
 
+  </span>
+  <span *ngIf="logged">
+    User: {{userName}}
   </span>
 
   <span class="example-spacer"></span>

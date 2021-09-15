@@ -1,8 +1,9 @@
-export interface ProductModel{
-    id: number,
-    nome: string,
-    ativo: boolean,
-    valor: number,
-    imagem: string,
-    onCart:boolean
+import { BaseENtityVM } from "./BaseEntityVM";
+
+export interface ProductModel extends BaseENtityVM{
+
+    Name: string,
+    Value: number,
+    ImgPath: string,
+    
 }

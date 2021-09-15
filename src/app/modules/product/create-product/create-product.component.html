@@ -1,1 +1,38 @@
-<p>create-product works!</p>
+
+
+<form (submit)="onFormSubmit()" [formGroup]="cadForm">
+  
+    <div fxLayout="column" fxLayoutAlign="space-between" fxFlexOffset="20" fxFlex="60">
+        <div>
+            <mat-label id="labelUser">
+                Create Product
+            </mat-label>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-form-field>
+            <input formControlName="Name" matInput placeholder="Name">
+            <mat-error *ngIf="cadForm.controls.Name.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="value" formControlName="Value" matInput placeholder="Value" [textMask]="{mask: MASKS.number.textMask}">
+            <mat-error *ngIf="cadForm.controls.Value.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error>
+           
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="imgPath" formControlName="ImgPath" matInput placeholder="image">
+            
+        </mat-form-field>
+
+
+        <button [disabled]="!cadForm.valid" type="submit" mat-button>Submit</button>
+    </div>
+
+</form>

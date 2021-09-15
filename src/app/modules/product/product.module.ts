@@ -14,6 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CardComponent } from './card/card.component';
 import { ImagePipe } from './pipes/image.pipe';
 import { ProductsService } from './services/products.service';
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { ProductsService } from './services/products.service';
     CommonModule,
     ProductRoutingModule,
     MatCardModule,
-    SharedModule
+    SharedModule,
+    NgBrazil,
+    TextMaskModule
     
   ],
   providers:[
