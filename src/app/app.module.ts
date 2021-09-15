@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClient } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { HttpClient } from '@angular/common/http';
     CoreModule,
     SharedModule,
     FlexLayoutModule,
+    ToastrModule.forRoot(), // ToastrModule added
+
 
   ],
   exports:[],

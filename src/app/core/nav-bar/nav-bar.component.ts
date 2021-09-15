@@ -18,15 +18,14 @@ export class NavBarComponent implements OnInit {
   constructor(private dialog: MatDialog, private localstrg:LocalStorageService, private loggedSvc:LoggedUserService) { }
 
   ngOnInit(): void {
-    debugger
+    
     this.loggedSvc.get()
     .subscribe((x)=>{      
       this.logged=x;
     }); 
+    let token:any = this.localstrg.getUser() 
 
-    let token = this.localstrg.getUser().token 
-
-    if(token == undefined){
+    if(token! == undefined){
       this.loggedSvc.set(false)  
     }
     else{

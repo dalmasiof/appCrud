@@ -23,7 +23,7 @@ export class UserServiceService implements IBaseRequest<UserModel> {
   }
 
   Create(toCreate: UserModel): Observable<UserModel> {
-    return this.httpSvc.Create(UserEndPoints.BASE,toCreate);
+    return this.httpSvc.Create(`${UserEndPoints.BASE}/${UserEndPoints.CREATE}`,toCreate);
   }
 
   Update(toUpdate: UserModel): Observable<UserModel> {

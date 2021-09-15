@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-storage.service';
 import { UserServiceService } from 'src/app/modules/user/services/user-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,9 @@ export class LoginComponent implements OnInit {
   errorMesageRequired: string = "Please input something..."
 
   constructor(private fb: FormBuilder, private userSvc: UserServiceService
-    , private localstrg: LocalStorageService, private route: Router) { }
+    , private localstrg: LocalStorageService
+    , private route: Router
+    , private toastvc:ToastrService) { }
 
   ngOnInit(): void {
 
@@ -28,17 +31,19 @@ export class LoginComponent implements OnInit {
   }
 
   onFormSubmit() {
-    debugger
+    
     let userModel = Object.assign({}, this.formLogin.value);
 
     this.userSvc.Login(userModel).subscribe((x) => {
       
+      this.toastvc.success("Log-in successful!")
       this.route.navigateByUrl('')
       this.localstrg.setUser(x);
 
     },
       (error => {
-        console.error("Deu ruim" + error)
+        console.log(error)
+        this.toastvc.error("Error: "+error.statusText)  
       }))
 
   }

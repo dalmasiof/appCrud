@@ -6,6 +6,7 @@ import { CustomValidators } from 'ng2-validation';
 import { UserServiceService } from 'src/app/modules/user/services/user-service.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class CreateUserComponent implements OnInit {
   constructor(private fb: FormBuilder
     , private userSvc:UserServiceService
     , private route:Router
-    ,private localstgrSvc:LocalStorageService) { }
+    ,private localstgrSvc:LocalStorageService
+    , private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.cadForm = this.fb.group({
@@ -59,7 +61,8 @@ export class CreateUserComponent implements OnInit {
 
     },
     (error=>{
-      console.error("Deu ruim "+error)
+      debugger
+      this.toastr.error("Error: "+error.statusText);
     })    
     )
 

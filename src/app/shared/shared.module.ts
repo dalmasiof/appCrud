@@ -18,6 +18,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgBrazil, TextMask } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { LocalStorageService } from './Services/LocalStorage/local-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -60,13 +61,15 @@ import { LocalStorageService } from './Services/LocalStorage/local-storage.servi
     NgBrazil,
     TextMaskModule,
 
+    
+
     // TextMask.TextMaskModule,
 
   ],
   providers:[
 
     LocalStorageService,
-    
+    ToastrService
   ]
 })
 export class SharedModule { }

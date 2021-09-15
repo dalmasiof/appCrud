@@ -4,22 +4,19 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 
-import { MatToolbarModule} from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule} from '@angular/material/input';
+import { MatToolbarModule} from '@angular/material/toolbar';  
 import { SharedModule } from '../shared/shared.module';
 import { CartModule } from '../modules/cart/cart.module';
 import { HttpClientService } from './Services/HttpClient/http-client.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BaseGuard } from './Services/guards/base.guard';
 import { LoggedUserService } from './Services/loggedUser/logged-user.service';
+import { httpInterceptor } from './Services/interceptor/httpInterceptor.interceptor';
 
 
-
-
-
-
+export const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true },
+];
 
 @NgModule({
   declarations: [
@@ -42,7 +39,8 @@ import { LoggedUserService } from './Services/loggedUser/logged-user.service';
     // StoreService,
     HttpClientService,
     BaseGuard,
-    LoggedUserService
+    LoggedUserService,
+    httpInterceptorProviders
     
   ]
   

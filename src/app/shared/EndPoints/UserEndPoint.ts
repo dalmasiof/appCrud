@@ -5,5 +5,7 @@ export  class UserEndPoints{
     public static LOGIN="Login";
 
     public static FILTER="Filter";
+    
+    public static CREATE= "Create";
 
 }
