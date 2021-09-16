@@ -13,7 +13,7 @@ export class BaseGuard implements CanActivate {
 
   }
   canActivate(): boolean {
-    debugger
+    
     let t = this.localstrg.getUser();
     
     if (t.token != undefined){

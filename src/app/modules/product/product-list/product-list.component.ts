@@ -17,18 +17,14 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.productSvc.fillStore();
 
-    // this.fillList()
+    this.fillList()
 
   }
 
-  // fillList() {
-  //   // debugger
-  //   this.products = this.store.getProductList();
-
-
-  // }
+  fillList() {
+    this.products = this.productSvc.GetList();
+  }
 
 
 

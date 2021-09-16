@@ -23,11 +23,11 @@ export class NavBarComponent implements OnInit {
     this.loggedSvc.get()
     .subscribe((x)=>{      
       this.logged=x;
-      debugger
+      
       if(x)
         this.userName = this.localstrg.getUser().name;
     }); 
-    debugger
+    
     let token:any = this.localstrg.getUser() 
 
     if(token! == undefined){

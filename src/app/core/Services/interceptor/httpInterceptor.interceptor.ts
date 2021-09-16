@@ -12,12 +12,11 @@ import { ToastrService } from "ngx-toastr";
 
 export class httpInterceptor implements HttpInterceptor {
 
-    user: any = JSON.parse(localStorage.getItem(environment.UserLocalStorage)!)
     constructor(private route: Router, private toastr: ToastrService) {
 
     }
     intercept(req: HttpRequest<any>, next: HttpHandler) {
-        
+
         let actualRoute = req.url;
         let arrUrl = actualRoute.split('/')
 
@@ -27,10 +26,10 @@ export class httpInterceptor implements HttpInterceptor {
                 catchError(
                     err => {
                         if (err instanceof HttpErrorResponse) {
-                            
+
                             if (err.status === 400) {
                                 debugger
-                                this.toastr.error("Error: "+err.error)
+                                this.toastr.error("Error: " + err.error)
                             }
 
                             else if (err.status === 500) {
@@ -45,15 +44,18 @@ export class httpInterceptor implements HttpInterceptor {
             )
         }
         else {
+            
+            let user: any = JSON.parse(localStorage.getItem(environment.UserLocalStorage)!)
 
-            if (this.user == null) {
+            if (user == null) {
                 this.route.navigateByUrl('User/login')
-                return throwError("Login again pls");
+                this.toastr.error("Invalid User");
+
 
             }
 
             const headers = new HttpHeaders({
-                'Authorization': 'Bearer ' + this.user!.token,
+                'Authorization': 'Bearer ' + user!.token,
                 'Content-Type': 'application/json'
             });
 
@@ -61,15 +63,17 @@ export class httpInterceptor implements HttpInterceptor {
             const newRequest = req.clone({ headers })
 
             return next.handle(newRequest).pipe(catchError(err => {
-                
+
                 if (err instanceof HttpErrorResponse) {
-                    
+
                     if (err.status === 401) {
-                        this.route.navigateByUrl('/Login/')
+                        this.route.navigateByUrl('User/login');
+                        this.toastr.warning("Session experied, log again");
                         return throwError(err);
 
 
                     } else if (err.status === 500) {
+                        this.toastr.warning("Internal Error");
 
                         return throwError(err);
                     }
