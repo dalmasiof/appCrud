@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { ProductModel } from 'src/app/shared/Model/ProductModel';
 import { ProductsService } from '../services/products.service';
 
@@ -8,22 +9,28 @@ import { ProductsService } from '../services/products.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, AfterViewInit {
 
   products!: Observable<ProductModel[]>;
+
+  
+
 
 
   constructor(private productSvc: ProductsService) {
   }
+  ngAfterViewInit(): void {
+    this.products = this.productSvc.GetList()
+  }
 
   ngOnInit(): void {
 
-    this.fillList()
 
   }
 
   fillList() {
-    this.products = this.productSvc.GetList();
+    debugger
+    // this.pd = this.products;
   }
 
 

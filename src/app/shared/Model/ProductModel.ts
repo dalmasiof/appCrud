@@ -1,9 +1,9 @@
 import { BaseENtityVM } from "./BaseEntityVM";
 
-export interface ProductModel extends BaseENtityVM{
-
-    Name: string,
-    Value: number,
-    ImgPath: string,
+export interface ProductModel {
+    id:number
+    name: string,
+    value: number,
+    imgPath: string,
     
 }

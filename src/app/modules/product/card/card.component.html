@@ -1,17 +1,13 @@
-<!-- <mat-card>
-    <mat-card-content>
-        <p>{{product.imagem}}</p>
-        <p>{{product.nome}}</p>
-        <p>{{product.valor | currency:'BRL':'symbol':'1.2-2':'pt'}}</p>
-    </mat-card-content>
-    <mat-card-footer>
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" >
-
-            <button (click)="removeFromCart(product.id)" *ngIf="product.onCart" mat-button class="danger">Remove</button>
-            <button (click)="addToCart(product.id)" *ngIf="!product.onCart" mat-button class="success">Add</button>
-
-            <button mat-button class="info">Details</button>
-        </div>
-    </mat-card-footer>
-</mat-card>
- -->
+<div >
+    <mat-card>
+        <mat-card-content>
+            <p>{{product.name}}</p>
+            <p>{{product.imgPath}}</p>
+            <p>{{product.value}}</p>
+        </mat-card-content>
+        <mat-card-footer >
+            <button mat-button class="success">Add</button>
+            <button mat-button style="margin-left: 30%;" class="info">Details</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

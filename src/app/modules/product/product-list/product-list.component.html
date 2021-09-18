@@ -1,6 +1,9 @@
-<div  fxLayout="row" fxLayout.xs="column"
-fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2%" fxLayoutAlign="center"  fxFlexOffset="20" fxFlex="60" >
-    <app-card class="flex-container" *ngFor="let prod of products | async" [product]="prod">
+<div  fxLayout="row wrap"  fxFlexOffset.xs="30"  fxFlexOffset="20" gdGap="30px 30px" fxLayoutGap="32px" fxLayoutAlign="flex-start" >
+
+    <app-card class="flex-container" style="width: 200px;" *ngFor="let prod of products | async" [product]="prod">
         
     </app-card>
+    <!-- <button  mat-button (click)="fillList()" class="success">Add</button> -->
+
+    
 </div>

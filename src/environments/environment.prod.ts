@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  urlBaseAPI:"http://localhost:5000/",
+  UserLocalStorage:"User"
 };

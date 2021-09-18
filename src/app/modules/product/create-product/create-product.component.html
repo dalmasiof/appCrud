@@ -10,16 +10,16 @@
         <mat-divider></mat-divider>
         <br>
         <mat-form-field>
-            <input formControlName="Name" matInput placeholder="Name">
-            <mat-error *ngIf="cadForm.controls.Name.hasError('required')">
+            <input formControlName="name" matInput placeholder="Name">
+            <mat-error *ngIf="cadForm.controls.name.hasError('required')">
                 {{errorMesageRequired}}
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <input name="value" formControlName="Value" matInput placeholder="Value"
+            <input name="value" formControlName="value" matInput placeholder="Value"
                 [textMask]="{mask: MASKS.number.textMask}">
-            <mat-error *ngIf="cadForm.controls.Value.hasError('required')">
+            <mat-error *ngIf="cadForm.controls.value.hasError('required')">
                 {{errorMesageRequired}}
             </mat-error>
         </mat-form-field>

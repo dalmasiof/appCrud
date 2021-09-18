@@ -28,8 +28,8 @@ export class CreateProductComponent implements OnInit {
   ngOnInit(): void  {
     this.cadForm = this.fb.group({
       
-      Name:['',Validators.required],
-      Value:['',Validators.required]
+      name:['',Validators.required],
+      value:['',Validators.required]
 
   })
   }
@@ -39,7 +39,7 @@ export class CreateProductComponent implements OnInit {
     let prodToCreate:ProductModel
 
     prodToCreate = Object.assign({},this.cadForm.value);
-    prodToCreate.Value = this.numberService.convertNumberToNetCore(prodToCreate.Value.toString());
+    prodToCreate.value = this.numberService.convertNumberToNetCore(prodToCreate.value.toString());
     
     this.productService.Create(prodToCreate).subscribe(
       (x)=>{
