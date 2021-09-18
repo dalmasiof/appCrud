@@ -16,6 +16,7 @@ import { ImagePipe } from './pipes/image.pipe';
 import { ProductsService } from './services/products.service';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ProductResolver } from './services/resolves/product.resolver';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     
   ],
   providers:[
-    ProductsService
+    ProductsService,
+    ProductResolver
   ]
 })
 export class ProductModule { }
