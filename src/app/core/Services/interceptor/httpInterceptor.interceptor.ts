@@ -46,16 +46,14 @@ export class httpInterceptor implements HttpInterceptor {
         else {
             
             let user: any = JSON.parse(localStorage.getItem(environment.UserLocalStorage)!)
+            let token = '';
 
-            if (user == null) {
-                this.route.navigateByUrl('User/login')
-                this.toastr.error("Invalid User");
-
-
+            if (user != null) {
+                token = user!.token;         
             }
 
             const headers = new HttpHeaders({
-                'Authorization': 'Bearer ' + user!.token,
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             });
 
@@ -67,7 +65,7 @@ export class httpInterceptor implements HttpInterceptor {
                 if (err instanceof HttpErrorResponse) {
 
                     if (err.status === 401) {
-                        this.route.navigateByUrl('User/login');
+                        this.route.navigate(['User/login'],{queryParams:{returnUrl:this.route.url}});
                         this.toastr.warning("Session experied, log again");
                         return throwError(err);
 

@@ -17,6 +17,8 @@ import { ProductsService } from './services/products.service';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ProductResolver } from './services/resolves/product.resolver';
+import { ProductUpdateComponent } from './product-update/product-update.component';
+import { ProductRemoveComponent } from './product-remove/product-remove.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { ProductResolver } from './services/resolves/product.resolver';
     ProductDetailsComponent,
     ProductListComponent,
     CardComponent,
-    ImagePipe
+    ImagePipe,
+    ProductUpdateComponent,
+    ProductRemoveComponent
   ],
   imports: [
     CommonModule,

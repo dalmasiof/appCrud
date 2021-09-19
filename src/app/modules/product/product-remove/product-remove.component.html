@@ -1,0 +1,10 @@
+<div fxLayout="column" fxLayoutAlign="space-between" fxFlexOffset="45" fxFlex="50">
+    <p>ID: {{Product.id}}</p>
+    <p>Name: {{Product.name}}</p>
+    <p>Value: {{Product.value}}</p>
+    <p>ImgPath: {{Product.imgPath}}</p>
+    <button (click)="removerProd(Product.id)" class="danger" mat-button>
+        <mat-icon>delete</mat-icon>
+        Delete?
+    </button>
+</div>

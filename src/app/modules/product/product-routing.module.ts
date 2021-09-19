@@ -5,12 +5,24 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { BaseGuard } from 'src/app/core/Services/guards/base.guard';
 import { ProductResolver } from './services/resolves/product.resolver';
+import { ProductUpdateComponent } from './product-update/product-update.component';
+import { ProductRemoveComponent } from './product-remove/product-remove.component';
 
 
 const routes: Routes = [
   { path: 'list', component: ProductListComponent },
   {
     path: 'details/:id', component: ProductDetailsComponent, resolve: {
+      product: ProductResolver
+    }
+  },
+  {
+    path: 'update/:id', component: ProductUpdateComponent, resolve: {
+      product: ProductResolver
+    }
+  },
+  {
+    path: 'delete/:id', component: ProductRemoveComponent, resolve: {
       product: ProductResolver
     }
   },
