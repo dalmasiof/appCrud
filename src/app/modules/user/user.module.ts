@@ -36,7 +36,7 @@ const routes: Routes = [
     SharedModule,
     StoreModule.forFeature(
       fromUserStore.userStoreFeatureKey,
-      fromUserStore.reducers
+      fromUserStore.LoginReducer
     ),
   ],
   providers: [UserServiceService],
