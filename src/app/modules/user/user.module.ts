@@ -9,8 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { UserServiceService } from './services/user-service.service';
 import { ListUserComponent } from './list-user/list-user.component';
 import { BaseGuard } from 'src/app/core/Services/guards/base.guard';
-
-
+import { StoreModule } from '@ngrx/store';
+import * as fromUserStore from './reducers';
 
 const routes: Routes = [
   {
@@ -23,24 +23,22 @@ const routes: Routes = [
   },
   {
     path: 'list',
-    component: ListUserComponent, canActivate:[BaseGuard]
-  }
+    component: ListUserComponent,
+    canActivate: [BaseGuard],
+  },
 ];
 
 @NgModule({
-  declarations: [
-    CreateUserComponent,
-    LoginComponent,
-    ListUserComponent
-  ],
+  declarations: [CreateUserComponent, LoginComponent, ListUserComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
+    StoreModule.forFeature(
+      fromUserStore.userStoreFeatureKey,
+      fromUserStore.reducers
+    ),
   ],
-  providers:[
-    UserServiceService
-  ]
-
+  providers: [UserServiceService],
 })
-export class UserModule { }
+export class UserModule {}

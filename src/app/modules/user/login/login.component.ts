@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-storage.service';
 import { UserServiceService } from 'src/app/modules/user/services/user-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { Store } from '@ngrx/store';
+import { AppState } from '../reducers';
+import { login } from '../login.actions';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +24,8 @@ export class LoginComponent implements OnInit {
     , private localstrg: LocalStorageService
     , private route: Router
     , private activeRoute:ActivatedRoute
-    , private toastvc: ToastrService) {
+    , private toastvc: ToastrService
+    , private store: Store<AppState>) {
  
       this.returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'];
 
@@ -44,6 +48,7 @@ export class LoginComponent implements OnInit {
     this.userSvc.Login(userModel).subscribe((x) => {
 
       this.toastvc.success("Log-in successful!")
+      this.store.dispatch(login(userModel))
 
       debugger
       this.returnUrl ? this.route.navigateByUrl(this.returnUrl)
