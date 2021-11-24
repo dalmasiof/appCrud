@@ -14,19 +14,25 @@ import { LoginActions } from '../login.actions-type';
 export const userStoreFeatureKey = 'userReducer';
 
 export interface LoginState {
-  user:any;
+  userReducer?:UserToken;
 }
 
 
 export const initiaLoginState:LoginState={
-  user:undefined
+  userReducer:undefined
 }
 
 export const LoginReducer = createReducer(
   initiaLoginState,
   on(LoginActions.login,(state,action)=>{
     return {
-      user:action
+      userReducer:action
+    }
+  }),
+
+  on(LoginActions.logout,(state,action)=>{
+    return {
+      userReducer:undefined
     }
   })
 );

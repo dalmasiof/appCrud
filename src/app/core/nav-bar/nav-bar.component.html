@@ -6,9 +6,10 @@
   <span class="navButton">
 
     
-    <button *ngIf="!logged" mat-button routerLink="User/login">Login</button>
-    <ng-container *ngIf="logged">
-      <button  mat-button class="danger" routerLink="User/login">
+    <button *ngIf="!(loggedIn|async) " mat-button routerLink="User/login">Login</button>
+
+    <ng-container *ngIf="(loggedIn|async)">
+      <button (click)="logOut()" mat-button class="danger" routerLink="User/login">
         <mat-icon>delete</mat-icon>Exit</button>
 
     <button mat-button [matMenuTriggerFor]="menuUser">User</button>
@@ -25,11 +26,11 @@
 
     <mat-menu #menuItem="matMenu">
       <button mat-menu-item routerLink="Product/list">List</button>
-      <button *ngIf="logged" mat-menu-item routerLink="Product/create">Create</button>
+      <button *ngIf="loggedIn|async" mat-menu-item routerLink="Product/create">Create</button>
     </mat-menu>
 
   </span>
-  <span *ngIf="logged">
+  <span *ngIf="(loggedIn|async)">
     User: {{userName}}
   </span>
 
