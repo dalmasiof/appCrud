@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -26,7 +27,9 @@ import { environment } from '../environments/environment';
     FlexLayoutModule,
     ToastrModule.forRoot(),
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }), // ToastrModule added
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }), 
+    EffectsModule.forRoot([])
+    
 
 
   ],

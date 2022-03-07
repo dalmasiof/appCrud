@@ -11,6 +11,8 @@ import { ListUserComponent } from './list-user/list-user.component';
 import { BaseGuard } from 'src/app/core/Services/guards/base.guard';
 import { StoreModule } from '@ngrx/store';
 import * as fromUserStore from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { LoginEffects } from './login.effects';
 
 const routes: Routes = [
   {
@@ -38,6 +40,7 @@ const routes: Routes = [
       fromUserStore.userStoreFeatureKey,
       fromUserStore.LoginReducer
     ),
+    EffectsModule.forFeature([LoginEffects])
   ],
   providers: [UserServiceService],
 })

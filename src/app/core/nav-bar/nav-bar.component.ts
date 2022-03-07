@@ -9,6 +9,7 @@ import { isLogged, isLoggedOut } from 'src/app/modules/user/login.selectors';
 import { LoginState } from 'src/app/modules/user/reducers';
 import { UserToken } from 'src/app/shared/Model/UserToken';
 import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-storage.service';
+import { UserInfoService } from 'src/app/shared/Services/user-info.service';
 import { LoggedUserService } from '../Services/loggedUser/logged-user.service';
 
 @Component({
@@ -18,19 +19,33 @@ import { LoggedUserService } from '../Services/loggedUser/logged-user.service';
 })
 export class NavBarComponent implements OnInit {
   userToken!: string;
-  loggedIn!: Observable<boolean>;
-  userName!: string;
+  isLogged:boolean=false
+
+  userEmail!: string;
 
   constructor(
     private dialog: MatDialog,
     private localstrg: LocalStorageService,
     private loggedSvc: LoggedUserService,
-    private store: Store<LoginState>
+    private store: Store<LoginState>,
+    private UserinfoSvc:UserInfoService
   ) {}
 
   ngOnInit(): void {
-    this.loggedIn = this.store.pipe(select(isLogged));
-    console.log(this.loggedIn.subscribe())
+    debugger;
+
+    this.UserinfoSvc.userData$.subscribe((x)=>{
+      let user = localStorage.getItem('User');
+      if (user != null) {
+        let jsonUser = JSON.parse(user);
+        this.userEmail = jsonUser.name;
+        this.isLogged = true
+      }
+      else{
+        this.isLogged=false
+      }
+    })
+
 
     // this.store.subscribe((x)=>{
     //   debugger
@@ -45,7 +60,7 @@ export class NavBarComponent implements OnInit {
   }
 
   logOut() {
-    this.store.dispatch(logout())
+    this.store.dispatch(logout());
 
     // this.loggedIn = this.store.pipe(select(isLoggedOut));
     // console.log(this.loggedIn.subscribe())

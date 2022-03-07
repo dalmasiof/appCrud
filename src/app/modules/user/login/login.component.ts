@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
     let userModel = Object.assign({}, this.formLogin.value);
 
     this.userSvc.Login(userModel).subscribe((x) => {
-
       this.toastvc.success("Log-in successful!")
       this.store.dispatch(LoginActions.login(x))
 
