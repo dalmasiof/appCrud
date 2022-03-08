@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
     , private route: Router
     , private activeRoute:ActivatedRoute
     , private toastvc: ToastrService
-    , private store: Store<LoginState>) {
+    , private store: Store<LoginState>
+     ) {
  
       this.returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'];
 
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit {
       this.returnUrl ? this.route.navigateByUrl(this.returnUrl)
       : this.route.navigateByUrl('')
          
-      this.localstrg.setUser(x);
+      // this.localstrg.setUser(x);
 
     },
       (error => {

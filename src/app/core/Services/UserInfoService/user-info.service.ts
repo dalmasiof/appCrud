@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { UserToken } from '../Model/UserToken';
+import { UserToken } from '../../../shared/Model/UserToken';
 
 @Injectable()
 export class UserInfoService {
