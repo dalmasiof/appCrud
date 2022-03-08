@@ -14,20 +14,20 @@ export class LocalStorageService {
    }
 
   setUser(objUser: UserToken) {
-    localStorage.setItem(environment.UserLocalStorage, JSON.stringify(objUser))
+    localStorage.setItem('user', JSON.stringify(objUser))
     this.lgedUser.set(true)
   }
 
   getUser(): any {
 
-    let objUser = JSON.parse(localStorage.getItem("User")!);
+    let objUser = JSON.parse(localStorage.getItem("user")!);
 
     return objUser;
 
   }
 
   clearUser() {
-    localStorage.removeItem(environment.UserLocalStorage);
+    localStorage.removeItem('user');
     this.lgedUser.set(false)
 
   }

@@ -45,7 +45,7 @@ export class httpInterceptor implements HttpInterceptor {
         }
         else {
             
-            let user: any = JSON.parse(localStorage.getItem(environment.UserLocalStorage)!)
+            let user: any = JSON.parse(localStorage.getItem('user')!)
             let token = '';
 
             if (user != null) {

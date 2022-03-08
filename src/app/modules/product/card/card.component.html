@@ -1,18 +1,41 @@
-<div >
-    <mat-card>
-        <mat-card-content>
-            <p>{{product.id}}</p>
-            <p>{{product.name}}</p>
-            <p>{{product.imgPath}}</p>
-            <p>{{product.value}}</p>
-        </mat-card-content>
-        <mat-card-footer style="padding: 20px;" fxLayoutAlign="space-between">
-            <button mat-icon-button class="warning" routerLink="/Product/update/{{product.id}}" ><mat-icon>edit</mat-icon></button>
+<div>
+  <mat-card>
+    <mat-card-content>
+      <p>{{ product.id }}</p>
+      <p>{{ product.name }}</p>
+      <p>{{ product.imgPath }}</p>
+      <p>{{ product.value }}</p>
+    </mat-card-content>
+    <mat-card-footer style="padding: 20px" fxLayoutAlign="space-between">
+      <button
+        mat-icon-button
+        class="warning"
+        routerLink="/Product/update/{{ product.id }}"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
 
-            <button mat-icon-button class="info" routerLink="/Product/details/{{product.id}}" ><mat-icon>info</mat-icon></button>
+      <button
+        mat-icon-button
+        class="info"
+        routerLink="/Product/details/{{ product.id }}"
+      >
+        <mat-icon>info</mat-icon>
+      </button>
 
-            <button mat-icon-button class="danger" routerLink="/Product/delete/{{product.id}}"><mat-icon>delete</mat-icon></button>
+      <button
+        mat-icon-button
+        class="danger"
+        routerLink="/Product/delete/{{ product.id }}"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+      <span>
+        <button style="margin-left: auto" mat-icon-button class="=">
+          <mat-icon>add</mat-icon>
+        </button>
+      </span>
 
-        </mat-card-footer>
-    </mat-card>
+    </mat-card-footer>
+  </mat-card>
 </div>
