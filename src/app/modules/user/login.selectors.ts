@@ -8,4 +8,3 @@ export const isLoggedOut = createSelector(
     isLogged,
     loggedin=>!loggedin
 )
-

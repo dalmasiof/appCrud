@@ -3,6 +3,7 @@ import { UserToken } from 'src/app/shared/Model/UserToken';
 import { environment } from 'src/environments/environment';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { LoggedUserService } from 'src/app/core/Services/loggedUser/logged-user.service';
+import { ProductModel } from '../../Model/ProductModel';
 
 @Injectable()
 export class LocalStorageService {
@@ -32,6 +33,15 @@ export class LocalStorageService {
 
   }
 
+  getCartItens(){
+    let objUser = JSON.parse(localStorage.getItem("cartItens")!);
+
+    return objUser;
+  }
+
+  setCartItens(cartItens:ProductModel[]){
+    localStorage.setItem('cartItens', JSON.stringify(cartItens))
+  }
   
 
 
