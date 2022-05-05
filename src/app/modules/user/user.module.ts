@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromUserStore from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { LoginEffects } from './login.effects';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 const routes: Routes = [
   {
@@ -28,10 +29,20 @@ const routes: Routes = [
     component: ListUserComponent,
     canActivate: [BaseGuard],
   },
+  {
+    path: 'edit',
+    component: EditUserComponent,
+    canActivate: [BaseGuard],
+  },
 ];
 
 @NgModule({
-  declarations: [CreateUserComponent, LoginComponent, ListUserComponent],
+  declarations: [
+    CreateUserComponent,
+    LoginComponent,
+    ListUserComponent,
+    EditUserComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -40,7 +51,7 @@ const routes: Routes = [
       fromUserStore.userStoreFeatureKey,
       fromUserStore.LoginReducer
     ),
-    EffectsModule.forFeature([LoginEffects])
+    EffectsModule.forFeature([LoginEffects]),
   ],
   providers: [UserServiceService],
 })
