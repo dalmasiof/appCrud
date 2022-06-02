@@ -1,41 +1,52 @@
 <div>
   <mat-card>
     <mat-card-content>
-      <p>{{ product.id }}</p>
-      <p>{{ product.name }}</p>
-      <p>{{ product.imgPath }}</p>
-      <p>{{ product.value }}</p>
-    </mat-card-content>
-    <mat-card-footer style="padding: 20px" fxLayoutAlign="space-between">
-      <button
-        mat-icon-button
-        class="warning"
-        routerLink="/Product/update/{{ product.id }}"
-      >
-        <mat-icon>edit</mat-icon>
-      </button>
-
-      <button
-        mat-icon-button
-        class="info"
-        routerLink="/Product/details/{{ product.id }}"
-      >
-        <mat-icon>info</mat-icon>
-      </button>
-
-      <button
-        mat-icon-button
-        class="danger"
-        routerLink="/Product/delete/{{ product.id }}"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-      <span>
-        <button style="margin-left: auto" mat-icon-button class="=">
-          <mat-icon>add</mat-icon>
+      <div class="cardContent">
+        <div class="prodImg">
+          <img [src]="product.imgPath" />
+        </div>
+        <div class="prodInfo">
+          <p>{{ product.name }}</p>
+          <p>{{ product.value | currency }}</p>
+        </div>
+      </div>
+      <div class="prodButtons">
+        <button
+          matTooltip="Edit"
+          mat-icon-button
+          class="warning"
+          routerLink="/Product/update/{{ product.id }}"
+        >
+          <mat-icon>edit</mat-icon>
         </button>
-      </span>
 
-    </mat-card-footer>
+        <button
+          matTooltip="Delete"
+          mat-icon-button
+          class="danger"
+          routerLink="/Product/delete/{{ product.id }}"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+        <span class="btnGroupDef">
+          <button
+            mat-raised-button
+            class="info"
+            routerLink="/Product/details/{{ product.id }}"
+            matTooltip="More Info"
+          >
+            <mat-icon>info</mat-icon>
+          </button>
+          <button
+            matTooltip="More Info"
+            style="margin-left: auto"
+            mat-raised-button
+            class="success"
+          >
+            <mat-icon>add</mat-icon> <span>Add to cart</span>
+          </button>
+        </span>
+      </div>
+    </mat-card-content>
   </mat-card>
 </div>

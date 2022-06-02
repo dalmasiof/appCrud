@@ -19,6 +19,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { ProductResolver } from './services/resolves/product.resolver';
 import { ProductUpdateComponent } from './product-update/product-update.component';
 import { ProductRemoveComponent } from './product-remove/product-remove.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ProductRemoveComponent } from './product-remove/product-remove.componen
     MatCardModule,
     SharedModule,
     NgBrazil,
-    TextMaskModule
+    TextMaskModule,
+    MatTooltipModule
     
   ],
   providers:[
