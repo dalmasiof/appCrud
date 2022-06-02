@@ -20,13 +20,13 @@ export class BaseGuard implements CanActivate {
    */
   constructor(private store: Store<LoginState>, private router: Router) {}
   canActivate(): Observable<boolean> {
-    debugger;
+    
     let val = this.store.pipe(select(isLogged));
 
     return this.store.pipe(
       select(isLogged),
       tap((loggedIn) => {
-        debugger;
+        
         if (!loggedIn) {
           this.router.navigateByUrl('User/login');
         }

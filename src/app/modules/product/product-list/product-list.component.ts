@@ -29,7 +29,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   }
 
   fillList() {
-    debugger
+    
     // this.pd = this.products;
   }
 

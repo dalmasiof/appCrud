@@ -30,9 +30,9 @@ export class NavBarComponent implements OnInit {
     private store: Store<LoginState>,
     private UserinfoSvc: UserInfoService
   ) {
-    debugger
+    
     this.UserinfoSvc.userData$.subscribe((x) => {
-      debugger;
+      
       let user = localStorage.getItem('user');
       if (user != null) {
         let jsonUser = JSON.parse(user);
@@ -45,10 +45,10 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
+    
 
     // this.store.subscribe((x)=>{
-    //   debugger
+    //   
     //   if(x.user == undefined  ){
     //     this.logged = false
     //   }

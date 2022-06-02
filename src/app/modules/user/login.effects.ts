@@ -12,7 +12,7 @@ export class LoginEffects {
       this.actions$.pipe(
         ofType(LoginActions.login),
         tap((action) => {
-            debugger
+            
           localStorage.setItem('user', JSON.stringify(action));
           this.UserinfoSvc.addData(action)
         })
@@ -25,7 +25,7 @@ export class LoginEffects {
       this.actions$.pipe(
         ofType(LoginActions.logout),
         tap((action) => {
-          debugger;
+          
           localStorage.removeItem('user');
           this.router.navigateByUrl('User/login');
           this.UserinfoSvc.addData(null);

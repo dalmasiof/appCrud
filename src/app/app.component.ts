@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'appCrud';
   constructor(private localStrgSvc:LocalStorageService,
     private routerSvc:Router) {
-    debugger
+    
     if(!localStrgSvc.getUser()){
       this.routerSvc.navigateByUrl('User/login')
     }

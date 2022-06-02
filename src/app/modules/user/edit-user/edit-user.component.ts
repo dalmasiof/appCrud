@@ -10,6 +10,7 @@ import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-
 export class EditUserComponent implements OnInit {
   User: any;
   editUserForm!: FormGroup;
+  errorMesageRequired:string | undefined
 
   constructor(
     private localStorageSvc: LocalStorageService,

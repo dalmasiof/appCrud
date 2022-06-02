@@ -28,7 +28,7 @@ export class httpInterceptor implements HttpInterceptor {
                         if (err instanceof HttpErrorResponse) {
 
                             if (err.status === 400) {
-                                debugger
+                                
                                 this.toastr.error("Error: " + err.error)
                             }
 
