@@ -26,6 +26,10 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: '',
+    component: LoginComponent,
+  },
+  {
     path: 'list',
     component: ListUserComponent,
     canActivate: [BaseGuard],

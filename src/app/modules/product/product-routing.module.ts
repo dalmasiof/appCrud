@@ -10,7 +10,7 @@ import { ProductRemoveComponent } from './product-remove/product-remove.componen
 
 
 const routes: Routes = [
-  { path: 'list', component: ProductListComponent },
+  { path: 'home', component: ProductListComponent },
   {
     path: 'details/:id', component: ProductDetailsComponent, resolve: {
       product: ProductResolver

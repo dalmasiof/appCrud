@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
         this.returnUrl
           ? this.route.navigateByUrl(this.returnUrl)
-          : this.route.navigateByUrl('');
+          : this.route.navigateByUrl('Product/home');
 
         // this.localstrg.setUser(x);
       },
