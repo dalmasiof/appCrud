@@ -1,45 +1,46 @@
-<mat-toolbar>
-
-  <span style="font-size: 15px !important;">
-    <button mat-button routerLink="/">Home</button>
-  </span>
-  <span class="navButton">
-
-    
-    <button *ngIf="!isLogged " mat-button routerLink="User/login">Login</button>
-
-    <ng-container *ngIf="isLogged">
-      <button (click)="logOut()" mat-button class="danger" routerLink="User/login">
-        <mat-icon>delete</mat-icon>Exit</button>
-
-    <button mat-button [matMenuTriggerFor]="menuUser">User</button>
-    <mat-menu #menuUser="matMenu">
-      <!-- <button mat-menu-item>My User</button> -->
-      <!-- <button mat-menu-item routerLink="User/list">List</button> -->
-      <button mat-menu-item routerLink="User/create">Create</button>
-      <button mat-menu-item routerLink="User/edit">Edit</button>
-
-    </mat-menu>
-    </ng-container>
-
-    
-
-    <button [matMenuTriggerFor]="menuItem" mat-button>Products</button>
-
-    <mat-menu #menuItem="matMenu">
-      <button mat-menu-item routerLink="Product/list">List</button>
-      <button *ngIf="isLogged" mat-menu-item routerLink="Product/create">Create</button>
-    </mat-menu>
-
-  </span>
-  <span *ngIf="isLogged">
-    User: {{userEmail}}
-  </span>
-
-  <span class="example-spacer"></span>
-  <button  matBadgePosition="before"  [matBadge]=countProds (click)="openDialog()" mat-icon-button class="example-icon favorite-icon">
-    <mat-icon>shopping_cart</mat-icon>
-  </button>
-
-
-</mat-toolbar>
+<nav>
+  <mat-toolbar>
+    <span>
+      <button mat-icon-button>
+        <mat-icon matTooltip="Home">home</mat-icon>
+      </button>
+    </span>
+  
+    <span class="navButton">
+      <button *ngIf="!isLogged" mat-button routerLink="User/login">Login</button>
+      <button *ngIf="isLogged" mat-button routerLink="Product/list">Products</button>
+  
+      <!-- <button *ngIf="isLogged" [matMenuTriggerFor]="menuItem" mat-button>Products</button>
+      <mat-menu #menuItem="matMenu">
+        <button mat-menu-item routerLink="Product/create">
+          Manage Products
+        </button>
+      </mat-menu> -->
+    </span>
+  
+    <span class="example-spacer"></span>
+    <span *ngIf="isLogged">
+      <button [matMenuTriggerFor]="menuUser" mat-button>
+        <mat-icon> account_circle </mat-icon> {{userEmail}}
+      </button>
+      <mat-menu #menuUser="matMenu" matTooltip="">
+        <button mat-menu-item >My account</button>
+        <button mat-menu-item routerLink="User/create">Purchase Orders</button>
+        <!-- <button mat-menu-item >Manage users</button> -->
+        <button mat-menu-item  (click)="logOut()">
+          LogOut
+        </button>
+      </mat-menu>
+  
+      <button
+        matBadgePosition="before"
+        [matBadge]="countProds"
+        (click)="openDialog()"
+        mat-icon-button
+        class="example-icon favorite-icon"
+      >
+        <mat-icon>shopping_cart</mat-icon> 
+      </button>
+    </span>
+  </mat-toolbar>
+</nav>

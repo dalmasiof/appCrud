@@ -20,6 +20,7 @@ import * as fromProdStore from '../modules/product/reducers';
 import { ProductEffects } from '../modules/product/product.effects';
 
 import { EffectsModule } from '@ngrx/effects';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true },
@@ -35,6 +36,7 @@ export const httpInterceptorProviders = [
     CartModule,
     HttpClientModule,
     MatBadgeModule,
+    MatTooltipModule,
     StoreModule.forFeature(
       fromProdStore.prodStoreFeatureKey,
       fromProdStore.ProductReducer

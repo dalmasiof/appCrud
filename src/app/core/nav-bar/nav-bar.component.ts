@@ -14,6 +14,7 @@ import { LoggedUserService } from '../Services/loggedUser/logged-user.service';
 import { ProductState } from 'src/app/modules/product/reducers';
 import { productSelector } from 'src/app/modules/product/product.selectors';
 import { ProductModel } from 'src/app/shared/Model/ProductModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -33,7 +34,8 @@ export class NavBarComponent implements OnInit {
     private localstrg: LocalStorageService,
     private loggedSvc: LoggedUserService,
     private store: Store<ProductState>,
-    private UserinfoSvc: UserInfoService
+    private UserinfoSvc: UserInfoService,
+    private router:Router
   ) {
     this.$productCard.subscribe((x) => {
       let prod = x.ProductReducer?.product;
@@ -75,8 +77,9 @@ export class NavBarComponent implements OnInit {
   }
   logOut() {
     this.store.dispatch(logout());
-    this.verifyUser()
     this.countProds = undefined;
+    this.verifyUser()
+    this.router.navigateByUrl('User/login')
   }
 
   openDialog() {
