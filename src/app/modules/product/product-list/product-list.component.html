@@ -1,9 +1,5 @@
 <div class="flex-container">
-
-    <app-card class="card"  *ngFor="let prod of products | async" [product]="prod">
-        
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <app-card class="card"  *ngFor="let prod of products " [product]="prod">
     </app-card>
-    <!-- <button  mat-button (click)="fillList()" class="success">Add</button> -->
-
-    
 </div>

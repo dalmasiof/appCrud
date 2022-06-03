@@ -4,6 +4,7 @@ import { LoginActions } from './login.actions-type';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserInfoService } from 'src/app/core/Services/UserInfoService/user-info.service';
+import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-storage.service';
 
 @Injectable()
 export class LoginEffects {
@@ -12,9 +13,9 @@ export class LoginEffects {
       this.actions$.pipe(
         ofType(LoginActions.login),
         tap((action) => {
-            
+          this.localStorageSvc.setCartItens([]);
           localStorage.setItem('user', JSON.stringify(action));
-          this.UserinfoSvc.addData(action)
+          this.UserinfoSvc.addData(action);
         })
       ),
     { dispatch: false }
@@ -25,7 +26,7 @@ export class LoginEffects {
       this.actions$.pipe(
         ofType(LoginActions.logout),
         tap((action) => {
-          
+          this.localStorageSvc.setCartItens([]);
           localStorage.removeItem('user');
           this.router.navigateByUrl('User/login');
           this.UserinfoSvc.addData(null);
@@ -37,6 +38,7 @@ export class LoginEffects {
   constructor(
     private actions$: Actions,
     private router: Router,
-    private UserinfoSvc: UserInfoService
+    private UserinfoSvc: UserInfoService,
+    private localStorageSvc: LocalStorageService
   ) {}
 }

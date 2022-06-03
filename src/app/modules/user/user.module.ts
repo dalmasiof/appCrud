@@ -14,6 +14,7 @@ import * as fromUserStore from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { LoginEffects } from './login.effects';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const routes: Routes = [
   {
@@ -47,10 +48,12 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
+    MatProgressBarModule,
     StoreModule.forFeature(
       fromUserStore.userStoreFeatureKey,
-      fromUserStore.LoginReducer
+      fromUserStore.LoginReducer,
     ),
+    
     EffectsModule.forFeature([LoginEffects]),
   ],
   providers: [UserServiceService],

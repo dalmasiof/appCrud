@@ -22,6 +22,7 @@ import { ProductResolver } from './services/resolves/product.resolver';
 import { ProductUpdateComponent } from './product-update/product-update.component';
 import { ProductRemoveComponent } from './product-remove/product-remove.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { StoreModule } from '@ngrx/store';
 import { ProductEffects } from './product.effects';
 import { EffectsModule } from '@ngrx/effects';
@@ -46,6 +47,7 @@ import { EffectsModule } from '@ngrx/effects';
     NgBrazil,
     TextMaskModule,
     MatTooltipModule,
+    MatProgressBarModule,
     StoreModule.forFeature(
       fromProdStore.prodStoreFeatureKey,
       fromProdStore.ProductReducer,

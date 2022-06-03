@@ -40,26 +40,16 @@ export class NavBarComponent implements OnInit {
       if (prod) {
         let valToAdd: number = 1;
         if (prod.type == `[card ProdList; cart page]Remove prod from cart`) {
-          debugger
           valToAdd = -1;
         }
-        
+
         if (this.countProds) this.countProds += valToAdd;
         else this.countProds = 1;
-        if(this.countProds == 0)
-          this.countProds = undefined
-
+        if (this.countProds == 0) this.countProds = undefined;
       }
     });
     this.UserinfoSvc.userData$.subscribe((x) => {
-      let user = localStorage.getItem('user');
-      if (user != null) {
-        let jsonUser = JSON.parse(user);
-        this.userEmail = jsonUser.name;
-        this.isLogged = true;
-      } else {
-        this.isLogged = false;
-      }
+      this.verifyUser()
     });
 
     let cartItens = this.localstrg.getCartItens();
@@ -68,10 +58,25 @@ export class NavBarComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let usr = this.localstrg.getUser();
+    this.verifyUser()
 
+  }
+  verifyUser() {
+    let user = localStorage.getItem('user');
+    if (user != null) {
+      let jsonUser = JSON.parse(user);
+      this.userEmail = jsonUser.name;
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
+  }
   logOut() {
     this.store.dispatch(logout());
+    this.verifyUser()
+    this.countProds = undefined;
   }
 
   openDialog() {
