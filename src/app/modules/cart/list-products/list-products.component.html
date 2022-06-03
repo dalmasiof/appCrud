@@ -1,8 +1,33 @@
-
-<ng-container *ngFor="let prod of productsList">
-    <div *ngIf="prod.imgPath">
-        <p>{{prod.name}}</p>
-        <p>{{prod.value}}</p>
-    </div>
-</ng-container>
-
+<mat-dialog-content>
+  <div class="cartContainer">
+    <ng-container *ngFor="let prod of productsList">
+      <div class="prod mat-elevation-z2">
+        <div class="imgProd">
+          <img [src]="prod.imgPath" />
+        </div>
+        <div class="prodInfo">
+          <div >
+            {{ prod.name }}
+          </div>
+         
+        </div>
+        <div class="prodInfoPrice">
+          <div>
+            {{ prod.value | currency}}
+          </div>
+        </div>
+        <div class="btnGroup">
+          <button mat-raised-button class="danger">
+            <mat-icon>delete</mat-icon> Remove
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+<p>Total {{total | currency}}</p>
+</mat-dialog-actions>
+<mat-dialog-actions align="end">
+  <button mat-raised-button  class="success">Finish Order </button>
+</mat-dialog-actions>

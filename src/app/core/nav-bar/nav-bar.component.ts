@@ -53,28 +53,25 @@ export class NavBarComponent implements OnInit {
         this.isLogged = false;
       }
     });
+
+    let cartItens = this.localstrg.getCartItens();
+    if(cartItens && cartItens.length>0){
+      this.countProds = cartItens.length
+    }
   }
 
   ngOnInit(): void {
-    // this.store.subscribe((x)=>{
-    //
-    //   if(x.user == undefined  ){
-    //     this.logged = false
-    //   }
-    //   else{
-    //     this.logged = true
-    //   }
-    // })
+   
   }
 
   logOut() {
     this.store.dispatch(logout());
 
-    // this.loggedIn = this.store.pipe(select(isLoggedOut));
-    // console.log(this.loggedIn.subscribe())
   }
 
   openDialog() {
-    this.dialog.open(ListProductsComponent);
+    this.dialog.open(ListProductsComponent,{
+      "width":"600px"
+    });
   }
 }

@@ -15,7 +15,7 @@ import { ProductState } from '../../product/reducers';
 export class ListProductsComponent implements OnInit {
 
   productsList: ProductModel[] = []
-
+  total:number = 0
 
 
   constructor(private localstorageSvc:LocalStorageService,
@@ -26,6 +26,6 @@ export class ListProductsComponent implements OnInit {
 
   ngOnInit(): void {
    this.productsList = this.localstorageSvc.getCartItens();
-
+    this.productsList.forEach((x)=>this.total+=x.value)
   }
 }
