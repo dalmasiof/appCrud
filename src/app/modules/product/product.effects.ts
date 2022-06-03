@@ -19,7 +19,6 @@ export class ProductEffects {
       this.actions$.pipe(
         ofType(ProductActions.addToCart),
         tap((action) => {
-          debugger
           let storageList = this.LocalStorageSvc.getCartItens() as ProductModel[]
           if(!storageList)
             storageList = []
@@ -37,7 +36,9 @@ export class ProductEffects {
         ofType(ProductActions.removeFromCart),
         tap((action) => {
           debugger
-          this.LocalStorageSvc.setCartItens([])
+          let prodList = this.LocalStorageSvc.getCartItens().filter((x)=> x.id != action.id)
+
+          this.LocalStorageSvc.setCartItens(prodList)
         })
       ),
     { dispatch: false }

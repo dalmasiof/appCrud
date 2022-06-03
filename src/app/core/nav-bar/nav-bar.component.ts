@@ -23,7 +23,7 @@ import { ProductModel } from 'src/app/shared/Model/ProductModel';
 export class NavBarComponent implements OnInit {
   userToken!: string;
   isLogged: boolean = false;
-  countProds:number | undefined
+  countProds: number | undefined;
 
   userEmail!: string;
   $productCard = this.store.pipe(select(productSelector));
@@ -36,12 +36,16 @@ export class NavBarComponent implements OnInit {
     private UserinfoSvc: UserInfoService
   ) {
     this.$productCard.subscribe((x) => {
-      let prod = x.ProductReducer?.product as ProductModel;
-      if(prod)
-        if(this.countProds)
-          this.countProds++
-          else
-          this.countProds = 1
+      let prod = x.ProductReducer?.product;
+      if (prod) {
+        let valToAdd: number = 1;
+        if (prod.type == `[card ProdList; cart page]Remove prod from cart`) {
+          valToAdd = -1;
+        }
+
+        if (this.countProds) this.countProds += valToAdd;
+        else this.countProds = 1;
+      }
     });
     this.UserinfoSvc.userData$.subscribe((x) => {
       let user = localStorage.getItem('user');
@@ -55,23 +59,20 @@ export class NavBarComponent implements OnInit {
     });
 
     let cartItens = this.localstrg.getCartItens();
-    if(cartItens && cartItens.length>0){
-      this.countProds = cartItens.length
+    if (cartItens && cartItens.length > 0) {
+      this.countProds = cartItens.length;
     }
   }
 
-  ngOnInit(): void {
-   
-  }
+  ngOnInit(): void {}
 
   logOut() {
     this.store.dispatch(logout());
-
   }
 
   openDialog() {
-    this.dialog.open(ListProductsComponent,{
-      "width":"600px"
+    this.dialog.open(ListProductsComponent, {
+      width: '600px',
     });
   }
 }
