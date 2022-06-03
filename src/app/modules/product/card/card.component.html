@@ -38,6 +38,7 @@
             <mat-icon>info</mat-icon> <span> </span>
           </button>
           <button
+          *ngIf="!onCart"
             matTooltip="Add to cart"
             style="margin-left: auto"
             mat-raised-button
@@ -45,6 +46,16 @@
             (click)="addToCart(product)"
           >
             <mat-icon>add</mat-icon> <span>Add to cart</span>
+          </button>
+          <button
+          *ngIf="onCart"
+            matTooltip="Remove from cart"
+            style="margin-left: auto"
+            mat-raised-button
+            class="danger"
+            (click)="removeToCart(product)"
+          >
+            <mat-icon>delete</mat-icon> <span>Remove from cart</span>
           </button>
         </span>
       </div>

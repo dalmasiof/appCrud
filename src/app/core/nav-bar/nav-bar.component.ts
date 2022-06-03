@@ -40,11 +40,15 @@ export class NavBarComponent implements OnInit {
       if (prod) {
         let valToAdd: number = 1;
         if (prod.type == `[card ProdList; cart page]Remove prod from cart`) {
+          debugger
           valToAdd = -1;
         }
-
+        
         if (this.countProds) this.countProds += valToAdd;
         else this.countProds = 1;
+        if(this.countProds == 0)
+          this.countProds = undefined
+
       }
     });
     this.UserinfoSvc.userData$.subscribe((x) => {
