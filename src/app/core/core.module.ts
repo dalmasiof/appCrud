@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 
 import { MatToolbarModule} from '@angular/material/toolbar';  
+import { MatBadgeModule} from '@angular/material/badge';  
 import { SharedModule } from '../shared/shared.module';
 import { CartModule } from '../modules/cart/cart.module';
 import { HttpClientService } from './Services/HttpClient/http-client.service';
@@ -30,7 +31,8 @@ export const httpInterceptorProviders = [
     MatToolbarModule,
     SharedModule,
     CartModule,
-    HttpClientModule
+    HttpClientModule,
+    MatBadgeModule
   ],
   exports:[
     NavBarComponent,

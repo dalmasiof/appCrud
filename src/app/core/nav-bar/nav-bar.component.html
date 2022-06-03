@@ -37,7 +37,7 @@
   </span>
 
   <span class="example-spacer"></span>
-  <button (click)="openDialog()" mat-icon-button class="example-icon favorite-icon">
+  <button  matBadgePosition="before"  [matBadge]=countProds (click)="openDialog()" mat-icon-button class="example-icon favorite-icon">
     <mat-icon>shopping_cart</mat-icon>
   </button>
 

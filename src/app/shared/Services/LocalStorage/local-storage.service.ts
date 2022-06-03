@@ -33,10 +33,10 @@ export class LocalStorageService {
 
   }
 
-  getCartItens(){
-    let objUser = JSON.parse(localStorage.getItem("cartItens")!);
+  getCartItens():ProductModel[]{
+    let objCart = JSON.parse(localStorage.getItem("cartItens")!) as ProductModel[];
 
-    return objUser;
+    return objCart;
   }
 
   setCartItens(cartItens:ProductModel[]){

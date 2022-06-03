@@ -11,6 +11,9 @@ import { UserToken } from 'src/app/shared/Model/UserToken';
 import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-storage.service';
 import { UserInfoService } from 'src/app/core/Services/UserInfoService/user-info.service';
 import { LoggedUserService } from '../Services/loggedUser/logged-user.service';
+import { ProductState } from 'src/app/modules/product/reducers';
+import { productSelector } from 'src/app/modules/product/product.selectors';
+import { ProductModel } from 'src/app/shared/Model/ProductModel';
 
 @Component({
   selector: 'app-nav-bar',
@@ -20,19 +23,27 @@ import { LoggedUserService } from '../Services/loggedUser/logged-user.service';
 export class NavBarComponent implements OnInit {
   userToken!: string;
   isLogged: boolean = false;
+  countProds:number | undefined
 
   userEmail!: string;
+  $productCard = this.store.pipe(select(productSelector));
 
   constructor(
     private dialog: MatDialog,
     private localstrg: LocalStorageService,
     private loggedSvc: LoggedUserService,
-    private store: Store<LoginState>,
+    private store: Store<ProductState>,
     private UserinfoSvc: UserInfoService
   ) {
-    
+    this.$productCard.subscribe((x) => {
+      let prod = x.ProductReducer?.product as ProductModel;
+      if(prod)
+        if(this.countProds)
+          this.countProds++
+          else
+          this.countProds = 1
+    });
     this.UserinfoSvc.userData$.subscribe((x) => {
-      
       let user = localStorage.getItem('user');
       if (user != null) {
         let jsonUser = JSON.parse(user);
@@ -45,16 +56,13 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-
     // this.store.subscribe((x)=>{
-    //   
+    //
     //   if(x.user == undefined  ){
     //     this.logged = false
     //   }
     //   else{
     //     this.logged = true
-
     //   }
     // })
   }

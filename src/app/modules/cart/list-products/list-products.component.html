@@ -1,9 +1,8 @@
-<!-- 
-<ng-container *ngFor="let prod of products | async">
-    <div *ngIf="prod.onCart">
-        <p>{{prod.imagem}}</p>
-        <p>{{prod.nome}}</p>
-        <p>{{prod.valor}}</p>
+
+<ng-container *ngFor="let prod of productsList">
+    <div *ngIf="prod.imgPath">
+        <p>{{prod.name}}</p>
+        <p>{{prod.value}}</p>
     </div>
 </ng-container>
- -->
+

@@ -35,13 +35,14 @@
             routerLink="/Product/details/{{ product.id }}"
             matTooltip="More Info"
           >
-            <mat-icon>info</mat-icon>
+            <mat-icon>info</mat-icon> <span> </span>
           </button>
           <button
-            matTooltip="More Info"
+            matTooltip="Add to cart"
             style="margin-left: auto"
             mat-raised-button
             class="success"
+            (click)="addToCart(product)"
           >
             <mat-icon>add</mat-icon> <span>Add to cart</span>
           </button>
