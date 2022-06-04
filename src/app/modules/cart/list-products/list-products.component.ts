@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { ProductModel } from 'src/app/shared/Model/ProductModel';
@@ -20,12 +23,15 @@ export class ListProductsComponent implements OnInit {
   productsList: ProductModel[] = [];
   total: number = 0;
   $productCard = this.store.pipe(select(productSelector));
-  logedUser:UserModel
+  logedUser: UserModel;
 
   constructor(
     private localstorageSvc: LocalStorageService,
     private store: Store<ProductState>,
-    private poSvc:PurchaseOrderService
+    private poSvc: PurchaseOrderService,
+    private toastSvc: ToastrService,
+    private dialogRef: MatDialogRef<ListProductsComponent>,
+    private router:Router
   ) {
     this.$productCard.subscribe((x) => {
       let prod = x.ProductReducer?.product;
@@ -58,24 +64,27 @@ export class ListProductsComponent implements OnInit {
   }
 
   onBtnFinishrOrder() {
-    debugger
+    debugger;
     let objPo: PurchaseModelVM = {
       id: 0,
-      discount:0,
-      idUserata:this.logedUser.id,
-      products : this.productsList,
-      statusDelivery:'On the way',
-      statusPO:'Open',
-      total:this.total,
-      totalToPay:this.total
+      discount: 0,
+      idUserata: this.logedUser.id,
+      products: this.productsList,
+      statusDelivery: 'On the way',
+      statusPO: 'Open',
+      total: this.total,
+      totalToPay: this.total,
     };
-    console.log(objPo);
 
-    this.poSvc.Create(objPo).subscribe((x)=>{
-      console.log(x)
-      
-    })
-
-
+    this.poSvc.Create(objPo).subscribe((x) => {
+      this.localstorageSvc.setCartItens([]);
+      this.productsList.forEach((x) => {
+        this.store.dispatch(ProductActions.removeFromCart(x));
+      });
+      this.productsList = [];
+      this.toastSvc.success("Purchase Order created","Success")
+      this.dialogRef.close()
+      this.router.navigateByUrl('PurchaseOrder/list')
+    });
   }
 }
