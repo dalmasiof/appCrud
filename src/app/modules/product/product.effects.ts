@@ -35,7 +35,7 @@ export class ProductEffects {
       this.actions$.pipe(
         ofType(ProductActions.removeFromCart),
         tap((action) => {
-          debugger
+          
           let prodList = this.LocalStorageSvc.getCartItens().filter((x)=> x.id != action.id)
 
           this.LocalStorageSvc.setCartItens(prodList)

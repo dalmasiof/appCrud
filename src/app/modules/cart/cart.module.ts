@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { PurchaseOrderService } from '../purchase-order/service/PurchaseOrder-service';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTooltipModule,
     MatDialogModule
     
-  ]
+  ],
+  providers:[PurchaseOrderService]
 })
 export class CartModule { }
