@@ -1,1 +1,58 @@
-<p>info-po works!</p>
+<div class="mainContainer">
+  <div class="infoPO">
+    <div class="dataPo mat-elevation-z8">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Id PurchaseOrder"
+          [value]="puchaseOrder?.id"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Id PurchaseOrder"
+          [value]="puchaseOrder?.discount | currency"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Total"
+          [value]="puchaseOrder?.total | currency"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Total to Pay"
+          [value]="puchaseOrder?.totalToPay | currency"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Status Delivery"
+          [value]="puchaseOrder?.statusDelivery"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Status Purchase Order"
+          [value]="puchaseOrder?.statusPO"
+        />
+      </mat-form-field>
+    </div>
+    <div class="prodList">
+        <h2>Products List</h2>
+        <br/>
+        <div *ngFor="let item of puchaseOrder?.products">
+        <p>{{ item.imgPath }}</p>     
+        <p>{{ item.name }}</p>
+        <p>{{ item.value }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="actionButtons"></div>
+</div>

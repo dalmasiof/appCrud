@@ -6,6 +6,8 @@ import { PurchaseOrderService } from './service/PurchaseOrder-service';
 import { InfoPoComponent } from './info-po/info-po.component';
 import { ListPoComponent } from './list-po/list-po.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   imports: [
     CommonModule,
     PurchaseOrderRoutingModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers:[PurchaseOrderService]
 })
