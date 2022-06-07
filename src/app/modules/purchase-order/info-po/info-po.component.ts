@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { PurchaseOrderService } from '../service/PurchaseOrder-service';
 
 @Component({
   selector: 'app-info-po',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoPoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private poSvc:PurchaseOrderService,
+    private activeRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    let Id = this.activeRoute.snapshot.paramMap.get('Id');
+    if(Id){
+
+      this.poSvc.GetById(parseInt(Id)).subscribe((x)=>{
+        console.log(x)
+      })
+    }
+    
+
   }
 
 }

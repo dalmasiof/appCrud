@@ -10,7 +10,8 @@ import { ListPoComponent } from './list-po/list-po.component';
 @NgModule({
   declarations: [
     InfoPoComponent,
-    ListPoComponent
+    ListPoComponent,
+    
   ],
   imports: [
     CommonModule,

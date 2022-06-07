@@ -15,6 +15,10 @@ export class PurchaseOrderService implements IBaseRequest<PurchaseModelVM>{
   GetById(Id: number): Observable<PurchaseModelVM> {
     return this.httpSvc.GetById(PurchaseOrderEndPoint.BASE,Id)
   }
+  GetByUserId(Id: number): Observable<PurchaseModelVM[]> {
+    return this.httpSvc.GetByUserId(PurchaseOrderEndPoint.BASE+
+      "/"+PurchaseOrderEndPoint.BY_USER_ID,Id)
+  }
   Filter(objFilter: PurchaseModelVM): Observable<PurchaseModelVM[]> {
     throw new Error('Method not implemented.');
   }

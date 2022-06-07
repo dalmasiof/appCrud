@@ -6,18 +6,21 @@
           <img [src]="prod.imgPath" />
         </div>
         <div class="prodInfo">
-          <div >
+          <div>
             {{ prod.name }}
           </div>
-         
         </div>
         <div class="prodInfoPrice">
           <div>
-            {{ prod.value | currency}}
+            {{ prod.value | currency }}
           </div>
         </div>
         <div class="btnGroup">
-          <button (click)="onBtnRemoveClick(prod)" mat-raised-button class="danger">
+          <button
+            (click)="onBtnRemoveClick(prod)"
+            mat-raised-button
+            class="danger"
+          >
             <mat-icon>delete</mat-icon> Remove
           </button>
         </div>
@@ -26,8 +29,16 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-<p>Total {{total | currency}}</p>
+  <p>Total {{ total | currency }}</p>
 </mat-dialog-actions>
 <mat-dialog-actions align="end">
-  <button mat-raised-button  (click)="onBtnFinishrOrder()" class="success">Finish Order </button>
+  <mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
+  <button
+    *ngIf="!isLoading"
+    mat-raised-button
+    (click)="onBtnFinishrOrder()"
+    class="success"
+  >
+    Finish Order
+  </button>
 </mat-dialog-actions>

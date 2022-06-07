@@ -24,6 +24,7 @@ export class ListProductsComponent implements OnInit {
   total: number = 0;
   $productCard = this.store.pipe(select(productSelector));
   logedUser: UserModel;
+  isLoading:boolean = false
 
   constructor(
     private localstorageSvc: LocalStorageService,
@@ -64,7 +65,7 @@ export class ListProductsComponent implements OnInit {
   }
 
   onBtnFinishrOrder() {
-    debugger;
+    this.isLoading = true
     let objPo: PurchaseModelVM = {
       id: 0,
       discount: 0,
@@ -85,6 +86,10 @@ export class ListProductsComponent implements OnInit {
       this.toastSvc.success("Purchase Order created","Success")
       this.dialogRef.close()
       this.router.navigateByUrl('PurchaseOrder/list')
-    });
+    },
+    (err)=>{
+      this.toastSvc.error("Error on create Purchase Order","Status "+err.status)
+      this.isLoading = false;
+    },()=>this.isLoading=false);
   }
 }

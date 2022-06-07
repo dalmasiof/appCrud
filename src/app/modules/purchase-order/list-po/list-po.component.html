@@ -1,1 +1,13 @@
-<p>list-po works!</p>
+<div class="mainContainer">
+  <div class="poContainer" *ngFor="let item of poList">
+    <div class="prodInfo">
+      <span> PuchaseOrder Id: {{ item.id }} </span>
+      <span> Status Delivery{{ item.statusDelivery }} </span
+      ><span> Status {{ item.statusPO }} </span>
+      <span> Total: {{ item.total | currency }} </span>
+      <a href="#" routerLink="" (click)="redirectInfo(item.id)">
+        Check Po Info  
+      </a>
+    </div>
+  </div>
+</div>

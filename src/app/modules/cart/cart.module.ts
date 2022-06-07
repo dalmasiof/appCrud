@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CartRoutingModule } from './cart-routing.module';
 import { ListProductsComponent } from './list-products/list-products.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -21,7 +22,8 @@ import { PurchaseOrderService } from '../purchase-order/service/PurchaseOrder-se
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
     
   ],
   providers:[PurchaseOrderService]
