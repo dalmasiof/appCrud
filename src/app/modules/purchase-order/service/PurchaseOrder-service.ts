@@ -13,7 +13,8 @@ export class PurchaseOrderService implements IBaseRequest<PurchaseModelVM>{
     return this.httpSvc.GetList(PurchaseOrderEndPoint.BASE)
   }
   GetById(Id: number): Observable<PurchaseModelVM> {
-    return this.httpSvc.GetById(PurchaseOrderEndPoint.BASE,Id)
+    return this.httpSvc.GetById(PurchaseOrderEndPoint.BASE+"/"+
+    PurchaseOrderEndPoint.BY_PO_ID,Id)
   }
   GetByUserId(Id: number): Observable<PurchaseModelVM[]> {
     return this.httpSvc.GetByUserId(PurchaseOrderEndPoint.BASE+

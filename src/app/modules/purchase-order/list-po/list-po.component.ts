@@ -11,17 +11,25 @@ import { PurchaseOrderService } from '../service/PurchaseOrder-service';
 })
 export class ListPoComponent implements OnInit {
   poList:PurchaseModelVM[] = []
+  isLoading:boolean=false
 
   constructor(private poSvc:PurchaseOrderService,
     private localStrgSvc:LocalStorageService,
     private router:Router) { }
 
   ngOnInit(): void {
+    this.fillList()
+  }
+
+  fillList(){
+    this.isLoading = true;
     let UserId = this.localStrgSvc.getUser().id
 
     this.poSvc.GetByUserId(UserId).subscribe((x)=>{
       this.poList = x;
-    })
+    },
+    (err)=>{this.isLoading=false},
+    ()=>this.isLoading = false)
   }
 
 

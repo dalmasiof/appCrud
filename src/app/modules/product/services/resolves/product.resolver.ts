@@ -16,7 +16,6 @@ export class ProductResolver implements Resolve<ProductModel> {
   }
 
   resolve(route: ActivatedRouteSnapshot) {
-    
     return this.productSVc.GetById((route.params['id']));
   }
 

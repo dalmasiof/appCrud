@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { PurchaseModelVM } from 'src/app/shared/Model/PurchaseModelVM';
 import { PurchaseOrderService } from '../service/PurchaseOrder-service';
 
 @Component({
@@ -8,6 +9,7 @@ import { PurchaseOrderService } from '../service/PurchaseOrder-service';
   styleUrls: ['./info-po.component.css']
 })
 export class InfoPoComponent implements OnInit {
+  puchaseOrder?:PurchaseModelVM
 
   constructor(private poSvc:PurchaseOrderService,
     private activeRoute:ActivatedRoute) { }
@@ -15,9 +17,8 @@ export class InfoPoComponent implements OnInit {
   ngOnInit(): void {
     let Id = this.activeRoute.snapshot.paramMap.get('Id');
     if(Id){
-
       this.poSvc.GetById(parseInt(Id)).subscribe((x)=>{
-        console.log(x)
+        this.puchaseOrder = x
       })
     }
     

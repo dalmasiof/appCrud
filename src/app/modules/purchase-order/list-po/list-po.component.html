@@ -1,10 +1,11 @@
 <div class="mainContainer">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <div class="poContainer" *ngFor="let item of poList">
-    <div class="prodInfo">
-      <span> PuchaseOrder Id: {{ item.id }} </span>
-      <span> Status Delivery{{ item.statusDelivery }} </span
-      ><span> Status {{ item.statusPO }} </span>
-      <span> Total: {{ item.total | currency }} </span>
+    <div class="prodInfo mat-elevation-z2">
+      <span> PuchaseOrder Id: <strong>{{ item.id }}</strong> </span>
+      <span> Status Delivery: <strong>{{ item.statusDelivery }}</strong> </span
+      ><span> Status: <strong>{{ item.statusPO }}</strong> </span>
+      <span> Total: <strong>{{ item.total | currency }}</strong> </span>
       <a href="#" routerLink="" (click)="redirectInfo(item.id)">
         Check Po Info  
       </a>

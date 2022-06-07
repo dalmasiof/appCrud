@@ -5,6 +5,7 @@ import { PurchaseOrderRoutingModule } from './purchase-order-routing.module';
 import { PurchaseOrderService } from './service/PurchaseOrder-service';
 import { InfoPoComponent } from './info-po/info-po.component';
 import { ListPoComponent } from './list-po/list-po.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ListPoComponent } from './list-po/list-po.component';
   ],
   imports: [
     CommonModule,
-    PurchaseOrderRoutingModule
+    PurchaseOrderRoutingModule,
+    MatProgressBarModule
   ],
   providers:[PurchaseOrderService]
 })
