@@ -34,7 +34,15 @@
 <mat-dialog-actions align="end">
   <mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
   <button
-    *ngIf="!isLoading"
+    *ngIf="!isLoading && productsList.length <= 0"
+    mat-raised-button
+    class="success"
+    disabled=""
+  >
+    Finish Order
+  </button>
+  <button
+    *ngIf="!isLoading && productsList.length > 0"
     mat-raised-button
     (click)="onBtnFinishrOrder()"
     class="success"
