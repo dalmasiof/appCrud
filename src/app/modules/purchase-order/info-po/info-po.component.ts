@@ -1,28 +1,101 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { PurchaseModelVM } from 'src/app/shared/Model/PurchaseModelVM';
 import { PurchaseOrderService } from '../service/PurchaseOrder-service';
 
 @Component({
   selector: 'app-info-po',
   templateUrl: './info-po.component.html',
-  styleUrls: ['./info-po.component.css']
+  styleUrls: ['./info-po.component.css'],
 })
-export class InfoPoComponent implements OnInit {
-  puchaseOrder?:PurchaseModelVM
+export class InfoPoComponent implements OnInit, AfterViewInit {
+  puchaseOrder: any;
+  isEditable: boolean = true;
+  isLoading: boolean = false;
 
-  constructor(private poSvc:PurchaseOrderService,
-    private activeRoute:ActivatedRoute) { }
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
 
-  ngOnInit(): void {
+  @ViewChild('stepper') private myStepper?: MatStepper;
+
+  constructor(
+    private poSvc: PurchaseOrderService,
+    private activeRoute: ActivatedRoute,
+    private _formBuilder: FormBuilder,
+    private toastSvc: ToastrService
+  ) {
     let Id = this.activeRoute.snapshot.paramMap.get('Id');
-    if(Id){
-      this.poSvc.GetById(parseInt(Id)).subscribe((x)=>{
-        this.puchaseOrder = x
-      })
-    }
-    
+    if (Id) {
+      this.poSvc.GetById(parseInt(Id)).subscribe((x) => {
+        this.puchaseOrder = x;
+        debugger
+        if (x.statusPO == `Finalized`) {
 
+          this.changeStepper(2)
+        } else {
+          this.changeStepper(0)
+
+        }
+      });
+    }
   }
 
+  changeStepper(i: number) {
+    for (let x = 0; x <= i; x++) {
+      this.myStepper?.next();
+    }
+  }
+
+  ngAfterViewInit(): void {
+    
+    
+  }
+
+  ngOnInit(): void {}
+
+  onBtnDeliveredClick() {
+    this.isLoading = true;
+    let objToUpdate = Object.assign({}, this.puchaseOrder);
+    objToUpdate.statusDelivery = 'Delivered';
+    objToUpdate.statusPO = 'Finalized';
+    objToUpdate.products = null;
+    this.pOUpdate(objToUpdate);
+  }
+
+  onBtnCancelClick() {
+    this.isLoading = true;
+    let objToUpdate = Object.assign({}, this.puchaseOrder);
+    objToUpdate.statusDelivery = 'Not delivered';
+    objToUpdate.statusPO = 'Cancelled';
+    objToUpdate.products = null;
+    this.pOUpdate(objToUpdate);
+  }
+
+  pOUpdate(objToUpdate: PurchaseModelVM) {
+    this.poSvc.Update(objToUpdate).subscribe(
+      (x) => {
+        this.puchaseOrder.statusDelivery = x.statusDelivery;
+        this.puchaseOrder.statusPO = x.statusPO;
+      },
+      (err) => {
+        this.toastSvc.error('Error to update Po', 'Status: ' + err.status);
+        this.isLoading = false;
+      },
+      () => {
+        this.toastSvc.success('Update Po succeful', 'Success');
+        this.changeStepper(1)
+
+        this.isLoading = false;
+      }
+    );
+  }
+
+  changeStep() {}
 }

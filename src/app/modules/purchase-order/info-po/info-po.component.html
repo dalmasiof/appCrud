@@ -3,6 +3,7 @@
     <div class="dataPo mat-elevation-z8">
       <mat-form-field>
         <input
+          readonly
           matInput
           placeholder="Id PurchaseOrder"
           [value]="puchaseOrder?.id"
@@ -10,13 +11,15 @@
       </mat-form-field>
       <mat-form-field>
         <input
+          readonly
           matInput
-          placeholder="Id PurchaseOrder"
+          placeholder="Discount"
           [value]="puchaseOrder?.discount | currency"
         />
       </mat-form-field>
       <mat-form-field>
         <input
+          readonly
           matInput
           placeholder="Total"
           [value]="puchaseOrder?.total | currency"
@@ -24,6 +27,7 @@
       </mat-form-field>
       <mat-form-field>
         <input
+          readonly
           matInput
           placeholder="Total to Pay"
           [value]="puchaseOrder?.totalToPay | currency"
@@ -31,6 +35,7 @@
       </mat-form-field>
       <mat-form-field>
         <input
+          readonly
           matInput
           placeholder="Status Delivery"
           [value]="puchaseOrder?.statusDelivery"
@@ -38,21 +43,81 @@
       </mat-form-field>
       <mat-form-field>
         <input
+          readonly
           matInput
           placeholder="Status Purchase Order"
           [value]="puchaseOrder?.statusPO"
         />
       </mat-form-field>
     </div>
-    <div class="prodList">
-        <h2>Products List</h2>
-        <br/>
-        <div *ngFor="let item of puchaseOrder?.products">
-        <p>{{ item.imgPath }}</p>     
-        <p>{{ item.name }}</p>
-        <p>{{ item.value }}</p>
+    <div class="prodList mat-elevation-z2">
+      <div
+        class="prodItem mat-elevation-z2"
+        *ngFor="let item of puchaseOrder?.products"
+      >
+        <div class="imgProd">
+          <img [src]="item.imgPath" />
+        </div>
+        <div class="prodData">
+          <strong>{{ item.name }}</strong>
+        </div>
+        <div class="prodData">
+          <strong>
+            {{ item.value | currency }}
+          </strong>
+        </div>
       </div>
     </div>
   </div>
-  <div class="actionButtons"></div>
+  <div class="subContainer">
+    <div class="stepper  mat-elevation-z2">
+      <span><strong>Status Delivery</strong></span>
+      <mat-stepper  linear #stepper>
+        <mat-step completed="true" [editable]="isEditable">
+            <ng-template matStepLabel>Waiting Approval</ng-template>
+        </mat-step>
+        <mat-step completed="true" [editable]="isEditable">
+            <ng-template matStepLabel>On the way!</ng-template>
+        </mat-step>
+        <mat-step completed="true">
+          <ng-template matStepLabel>Received</ng-template>
+        </mat-step>
+      </mat-stepper>
+    </div>
+    <div class="actionButtons mat-elevation-z2">
+      <div *ngIf="isLoading" class="spinner">
+        <mat-spinner  diameter="50" mode="indeterminate"></mat-spinner>
+        <strong><span>Loading...</span></strong>
+      </div>
+      <ng-container *ngIf="!isLoading && (puchaseOrder?.statusPO != 'Finalized' && puchaseOrder?.statusPO != 'Cancelled')">
+        <button (click)="onBtnDeliveredClick()" mat-raised-button class="success">
+          <mat-icon>
+            done
+          </mat-icon>
+          Delivered
+        </button>
+        <button  (click)="onBtnCancelClick()" mat-raised-button class="danger">
+          <mat-icon>
+            close
+          </mat-icon>
+           Cancel Purchase Order
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="!isLoading && (puchaseOrder?.statusPO == 'Finalized' || puchaseOrder?.statusPO == 'Cancelled')">
+        <button disabled mat-raised-button class="success">
+          <mat-icon>
+            done
+          </mat-icon>
+          Delivered
+        </button>
+        <button  disabled mat-raised-button class="danger">
+          <mat-icon>
+            close
+          </mat-icon>
+           Cancel Purchase Order
+        </button>
+      </ng-container>
+    </div>
+  </div>
 </div>
