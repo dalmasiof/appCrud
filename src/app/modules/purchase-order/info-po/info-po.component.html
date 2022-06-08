@@ -73,13 +73,13 @@
     <div class="stepper  mat-elevation-z2">
       <span><strong>Status Delivery</strong></span>
       <mat-stepper  linear #stepper>
-        <mat-step completed="true" [editable]="isEditable">
+        <mat-step  [editable]="isEditable">
             <ng-template matStepLabel>Waiting Approval</ng-template>
         </mat-step>
-        <mat-step completed="true" [editable]="isEditable">
+        <mat-step  [editable]="isEditable">
             <ng-template matStepLabel>On the way!</ng-template>
         </mat-step>
-        <mat-step completed="true">
+        <mat-step >
           <ng-template matStepLabel>Received</ng-template>
         </mat-step>
       </mat-stepper>
@@ -89,6 +89,7 @@
         <mat-spinner  diameter="50" mode="indeterminate"></mat-spinner>
         <strong><span>Loading...</span></strong>
       </div>
+  
       <ng-container *ngIf="!isLoading && (puchaseOrder?.statusPO != 'Finalized' && puchaseOrder?.statusPO != 'Cancelled')">
         <button (click)="onBtnDeliveredClick()" mat-raised-button class="success">
           <mat-icon>

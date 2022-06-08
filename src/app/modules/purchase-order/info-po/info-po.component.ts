@@ -13,8 +13,8 @@ import { PurchaseOrderService } from '../service/PurchaseOrder-service';
 })
 export class InfoPoComponent implements OnInit, AfterViewInit {
   puchaseOrder: any;
-  isEditable: boolean = true;
-  isLoading: boolean = false;
+  isEditable: boolean = false;
+  isLoading: boolean = true;
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -23,7 +23,7 @@ export class InfoPoComponent implements OnInit, AfterViewInit {
     secondCtrl: ['', Validators.required],
   });
 
-  @ViewChild('stepper') private myStepper?: MatStepper;
+  @ViewChild('stepper') private myStepper: MatStepper | undefined;
 
   constructor(
     private poSvc: PurchaseOrderService,
@@ -35,19 +35,25 @@ export class InfoPoComponent implements OnInit, AfterViewInit {
     if (Id) {
       this.poSvc.GetById(parseInt(Id)).subscribe((x) => {
         this.puchaseOrder = x;
-        debugger
+        this.isLoading = false
         if (x.statusPO == `Finalized`) {
 
-          this.changeStepper(2)
-        } else {
+          this.changeStepper(1)
+        } else  if(x.statusPO == `Cancelled`){
+        }
+        else{
           this.changeStepper(0)
-
         }
       });
     }
   }
 
   changeStepper(i: number) {
+    debugger
+    if(i<0){
+      this.myStepper?.reset()
+      return
+    }
     for (let x = 0; x <= i; x++) {
       this.myStepper?.next();
     }
@@ -67,6 +73,8 @@ export class InfoPoComponent implements OnInit, AfterViewInit {
     objToUpdate.statusPO = 'Finalized';
     objToUpdate.products = null;
     this.pOUpdate(objToUpdate);
+    this.changeStepper(1)
+
   }
 
   onBtnCancelClick() {
@@ -76,6 +84,9 @@ export class InfoPoComponent implements OnInit, AfterViewInit {
     objToUpdate.statusPO = 'Cancelled';
     objToUpdate.products = null;
     this.pOUpdate(objToUpdate);
+
+    this.changeStepper(-1)
+
   }
 
   pOUpdate(objToUpdate: PurchaseModelVM) {
@@ -90,12 +101,11 @@ export class InfoPoComponent implements OnInit, AfterViewInit {
       },
       () => {
         this.toastSvc.success('Update Po succeful', 'Success');
-        this.changeStepper(1)
 
         this.isLoading = false;
       }
     );
   }
 
-  changeStep() {}
+
 }
