@@ -11,13 +11,7 @@
         Login
       </button>
 
-      <button *ngIf="isLogged"  mat-button>
-        Manage Products
-      </button>
-
-      <button *ngIf="isLogged"  mat-button>
-        Manage Users
-      </button>
+  
     </span>
 
     <span class="example-spacer"></span>
@@ -26,7 +20,7 @@
         <mat-icon> account_circle </mat-icon> {{ userEmail }}
       </button>
       <mat-menu #menuUser="matMenu" matTooltip="">
-        <button mat-menu-item>My account</button>
+        <!-- <button mat-menu-item>My account</button> -->
         <button mat-menu-item routerLink="PurchaseOrder/list">Purchase Orders</button>
         <!-- <button mat-menu-item >Manage users</button> -->
         <button mat-menu-item (click)="logOut()">LogOut</button>
