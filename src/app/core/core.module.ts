@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BaseGuard } from './Services/guards/base.guard';
 import { LoggedUserService } from './Services/loggedUser/logged-user.service';
 import { httpInterceptor } from './Services/interceptor/httpInterceptor.interceptor';
+import { ProductService } from './Services/prodService/product.service';
 
 
 export const httpInterceptorProviders = [
@@ -43,7 +44,8 @@ export const httpInterceptorProviders = [
     HttpClientService,
     BaseGuard,
     LoggedUserService,
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    ProductService
     
   ]
   

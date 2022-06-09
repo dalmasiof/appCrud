@@ -8,6 +8,7 @@ import { UserModel } from 'src/app/shared/Model/UserModel';
 import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-storage.service';
 import { UserInfoService } from 'src/app/shared/Services/UserService/user-info.service';
 import { LoggedUserService } from '../Services/loggedUser/logged-user.service';
+import { ProductService } from '../Services/prodService/product.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,16 +18,19 @@ import { LoggedUserService } from '../Services/loggedUser/logged-user.service';
 export class NavBarComponent implements OnInit {
   userInf?: UserModel;
   isLogged: boolean = false;
-  countProds: number = 0;
+  countProds?: number
 
   constructor(
     private dialog: MatDialog,
     private localstrg: LocalStorageService,
     private loggedSvc: LoggedUserService,
-    private UserinfoSvc: UserInfoService
+    private UserinfoSvc: UserInfoService,
+    private prodSvc:ProductService
   ) {}
 
   ngOnInit(): void {
+ 
+
     this.loggedSvc.userLogged.subscribe((x) => {
       if (x) {
         this.userInf = this.localstrg.getUser();
@@ -36,6 +40,24 @@ export class NavBarComponent implements OnInit {
         this.userInf = undefined;
       }
     });
+
+    this.prodSvc.prodQtd.subscribe((x)=>{
+      if(x == 0){
+        this.countProds = undefined;
+      }
+      else{
+        this.countProds = this.countProds = x;
+      }
+    })
+
+    if(this.localstrg.getUser()){
+      this.loggedSvc.set(true);
+    }
+
+    let qtdProdOnCart = this.localstrg.getCartItens().length
+    if(qtdProdOnCart && qtdProdOnCart>0)
+      this.countProds = qtdProdOnCart
+
   }
 
   logOut() {
