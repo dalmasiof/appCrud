@@ -72,7 +72,7 @@ import { ToastrService } from 'ngx-toastr';
   providers:[
 
     LocalStorageService,
-    ToastrService
+    ToastrService,
   ]
 })
 export class SharedModule { }

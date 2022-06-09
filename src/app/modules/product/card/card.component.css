@@ -1,0 +1,51 @@
+.cardContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+    
+}
+
+.cardContent .prodImg{
+    display:flex;
+    justify-content: flex-start;
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 100%;
+}
+
+.cardContent .prodImg  img{
+    
+    width: 250px;
+    height: 100%;
+    
+}
+
+.prodInfo{
+    background-color: #DDD5D3 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    width: 42%;
+}
+
+.prodButtons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.prodButtons button{
+    /* margin: 2%; */
+}
+.btnGroupDef{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+
+.btnGroupDef button{
+    align-items: center;
+}
+

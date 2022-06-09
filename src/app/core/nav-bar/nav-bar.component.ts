@@ -1,45 +1,90 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ListProductsComponent } from 'src/app/modules/cart/list-products/list-products.component';
+import { logout } from 'src/app/modules/user/login.actions';
+import { isLogged, isLoggedOut } from 'src/app/modules/user/login.selectors';
+import { LoginState } from 'src/app/modules/user/reducers';
 import { UserToken } from 'src/app/shared/Model/UserToken';
 import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-storage.service';
+import { UserInfoService } from 'src/app/core/Services/UserInfoService/user-info.service';
 import { LoggedUserService } from '../Services/loggedUser/logged-user.service';
+import { ProductState } from 'src/app/modules/product/reducers';
+import { productSelector } from 'src/app/modules/product/product.selectors';
+import { ProductModel } from 'src/app/shared/Model/ProductModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
+  userToken!: string;
+  isLogged: boolean = false;
+  countProds: number | undefined;
 
-  userToken!:string
-  logged:boolean=false
-  userName!:string
+  userEmail!: string;
+  $productCard = this.store.pipe(select(productSelector));
 
-  constructor(private dialog: MatDialog, private localstrg:LocalStorageService, private loggedSvc:LoggedUserService) { }
+  constructor(
+    private dialog: MatDialog,
+    private localstrg: LocalStorageService,
+    private loggedSvc: LoggedUserService,
+    private store: Store<ProductState>,
+    private UserinfoSvc: UserInfoService,
+    private router:Router
+  ) {
+    this.$productCard.subscribe((x) => {
+      let prod = x.ProductReducer?.product;
+      if (prod) {
+        let valToAdd: number = 1;
+        if (prod.type == `[card ProdList; cart page]Remove prod from cart`) {
+          valToAdd = -1;
+        }
+
+        if (this.countProds) this.countProds += valToAdd;
+        else this.countProds = 1;
+        if (this.countProds == 0) this.countProds = undefined;
+      }
+    });
+    this.UserinfoSvc.userData$.subscribe((x) => {
+      this.verifyUser()
+    });
+
+    let cartItens = this.localstrg.getCartItens();
+    if (cartItens && cartItens.length > 0) {
+      this.countProds = cartItens.length;
+    }
+  }
 
   ngOnInit(): void {
-    
-    this.loggedSvc.get()
-    .subscribe((x)=>{      
-      this.logged=x;
-      
-      if(x)
-        this.userName = this.localstrg.getUser().name;
-    }); 
-    
-    let token:any = this.localstrg.getUser() 
+    let usr = this.localstrg.getUser();
+    this.verifyUser()
 
-    if(token! == undefined){
-      this.loggedSvc.set(false)  
+  }
+  verifyUser() {
+    let user = localStorage.getItem('user');
+    if (user != null) {
+      let jsonUser = JSON.parse(user);
+      this.userEmail = jsonUser.name;
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
     }
-    else{
-      this.loggedSvc.set(true)  
-    }
+  }
+  logOut() {
+    this.store.dispatch(logout());
+    this.countProds = undefined;
+    this.verifyUser()
+    this.router.navigateByUrl('User/login')
   }
 
   openDialog() {
-    this.dialog.open(ListProductsComponent);
+    this.dialog.open(ListProductsComponent, {
+      width: '600px',
+    });
   }
-
 }

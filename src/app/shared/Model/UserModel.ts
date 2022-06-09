@@ -1,4 +1,6 @@
-export interface UserModel {
+import { BaseENtityVM } from "./BaseEntityVM"
+
+export interface UserModel extends BaseENtityVM {
 
     Name: string
     Email: string
