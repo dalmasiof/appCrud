@@ -56,9 +56,8 @@ export class LoginComponent implements OnInit {
         // this.localstrg.setUser(x);
       },
       (error) => {
-        console.log(error);
         this.isLoading = false;
-        this.toastvc.error('Error: ' + error.statusText);
+        this.toastvc.error('Error: '+error.statusText,"Status: "+error.status);
       },
       ()=>this.isLoading=false
     );

@@ -1,4 +1,7 @@
 <div class="mainContainer">
+  <div class="title" *ngIf="!isLoading && poList?.length == 0">
+    <strong><h1>No PO`s registered.</h1></strong>
+  </div>
   <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <div class="poContainer" *ngFor="let item of poList">
     <div class="prodInfo mat-elevation-z2">
