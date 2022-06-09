@@ -7,8 +7,7 @@ import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
 
 
-import { CreateProductComponent } from './create-product/create-product.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
+
 import { ProductListComponent } from './product-list/product-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CardComponent } from './card/card.component';
@@ -17,20 +16,17 @@ import { ProductsService } from './services/products.service';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ProductResolver } from './services/resolves/product.resolver';
-import { ProductUpdateComponent } from './product-update/product-update.component';
-import { ProductRemoveComponent } from './product-remove/product-remove.component';
+
 
 
 @NgModule({
   declarations: [
     
-    CreateProductComponent,
-    ProductDetailsComponent,
-    ProductListComponent,
+  
     CardComponent,
     ImagePipe,
-    ProductUpdateComponent,
-    ProductRemoveComponent
+    ProductListComponent
+ 
   ],
   imports: [
     CommonModule,
