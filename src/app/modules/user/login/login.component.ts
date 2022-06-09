@@ -5,9 +5,6 @@ import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-
 import { UserServiceService } from 'src/app/modules/user/services/user-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
-import { LoginState } from '../reducers';
-import { login } from '../login.actions';
-import { LoginActions } from '../login.actions-type';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +23,7 @@ export class LoginComponent implements OnInit {
     , private route: Router
     , private activeRoute:ActivatedRoute
     , private toastvc: ToastrService
-    , private store: Store<LoginState>) {
+) {
  
       this.returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'];
 
@@ -48,7 +45,6 @@ export class LoginComponent implements OnInit {
 
     this.userSvc.Login(userModel).subscribe((x) => {
       this.toastvc.success("Log-in successful!")
-      this.store.dispatch(LoginActions.login(x))
 
       this.returnUrl ? this.route.navigateByUrl(this.returnUrl)
       : this.route.navigateByUrl('')

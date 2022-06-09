@@ -4,12 +4,8 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ListProductsComponent } from 'src/app/modules/cart/list-products/list-products.component';
-import { logout } from 'src/app/modules/user/login.actions';
-import { isLogged, isLoggedOut } from 'src/app/modules/user/login.selectors';
-import { LoginState } from 'src/app/modules/user/reducers';
-import { UserToken } from 'src/app/shared/Model/UserToken';
 import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-storage.service';
-import { UserInfoService } from 'src/app/shared/Services/user-info.service';
+import { UserInfoService } from 'src/app/shared/Services/UserService/user-info.service';
 import { LoggedUserService } from '../Services/loggedUser/logged-user.service';
 
 @Component({
@@ -27,12 +23,10 @@ export class NavBarComponent implements OnInit {
     private dialog: MatDialog,
     private localstrg: LocalStorageService,
     private loggedSvc: LoggedUserService,
-    private store: Store<LoginState>,
     private UserinfoSvc:UserInfoService
   ) {}
 
   ngOnInit(): void {
-    debugger;
 
     this.UserinfoSvc.userData$.subscribe((x)=>{
       let user = localStorage.getItem('User');
@@ -60,7 +54,6 @@ export class NavBarComponent implements OnInit {
   }
 
   logOut() {
-    this.store.dispatch(logout());
 
     // this.loggedIn = this.store.pipe(select(isLoggedOut));
     // console.log(this.loggedIn.subscribe())

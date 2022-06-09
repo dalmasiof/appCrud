@@ -4,7 +4,6 @@ import { IBaseRequest } from 'src/app/core/Interface/IBaseRequest';
 import { HttpClientService } from 'src/app/core/Services/HttpClient/http-client.service';
 import { UserEndPoints } from '../../../shared/EndPoints/UserEndPoint';
 import { UserModel } from '../../../shared/Model/UserModel';
-import { UserToken } from '../../../shared/Model/UserToken';
 
 @Injectable()
 export class UserServiceService implements IBaseRequest<UserModel> {
@@ -34,7 +33,7 @@ export class UserServiceService implements IBaseRequest<UserModel> {
     return this.httpSvc.Delete(UserEndPoints.BASE,Id);
   }
 
-  Login(objUser:UserModel):Observable<UserToken>{
+  Login(objUser:UserModel):Observable<UserModel>{
     return this.httpSvc.Login(`${UserEndPoints.BASE}/${UserEndPoints.LOGIN}`,objUser);
   }
 }

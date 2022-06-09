@@ -26,12 +26,6 @@ import { environment } from '../environments/environment';
     SharedModule,
     FlexLayoutModule,
     ToastrModule.forRoot(),
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }), 
-    EffectsModule.forRoot([])
-    
-
-
   ],
   exports:[],
   providers: [],
