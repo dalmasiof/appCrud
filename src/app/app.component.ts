@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocalStorageService } from './shared/Services/LocalStorage/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'appCrud';
+  constructor(private localStrgSvc:LocalStorageService,
+    private routerSvc:Router) {
+    
+    if(!localStrgSvc.getUser()){
+      this.routerSvc.navigateByUrl('User/login')
+    }
+  }
 }

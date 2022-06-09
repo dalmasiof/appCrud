@@ -7,7 +7,6 @@ import { ListPoComponent } from './list-po/list-po.component';
 const routes: Routes = [{path:'list',component:ListPoComponent, canActivate: [BaseGuard]},
 {path:'purchaseOrderById/:Id',component:InfoPoComponent, canActivate: [BaseGuard] }]
 
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

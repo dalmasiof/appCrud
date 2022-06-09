@@ -37,6 +37,7 @@ export class ListProductsComponent implements OnInit {
     })
     this.userInfo = this.localStrgSvc.getUser()
 
+    this.countItens();
   }
 
   ngOnInit(): void {}

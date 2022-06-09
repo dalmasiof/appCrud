@@ -1,38 +1,52 @@
-
-
 <form (submit)="onFormSubmit()" [formGroup]="formLogin">
-  
-    <div fxLayout="column" fxLayoutAlign="space-between" fxFlexOffset="20" fxFlex="60">
-        <div>
-            <mat-label id="labelUser">
-                Login
-            </mat-label>
-        </div>
-        <br>
-        <mat-divider></mat-divider>
-        <br>
-        <mat-form-field>
-            <input formControlName="Email" matInput name="Email" placeholder="Email">
-            <mat-error *ngIf="formLogin.controls.Email.hasError('required')">
-                {{errorMesageRequired}}
-            </mat-error>
-        </mat-form-field>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="space-between"
+    fxFlexOffset="20"
+    fxFlex="60"
+  >
+    <div>
+      <mat-label id="labelUser"> Login </mat-label>
+    </div>
+    <br />
+    <mat-divider></mat-divider>
+    <br />
+    <mat-form-field>
+      <input
+        formControlName="Email"
+        matInput
+        name="Email"
+        placeholder="Email"
+      />
+      <mat-error *ngIf="formLogin.controls.Email.hasError('required')">
+        {{ errorMesageRequired }}
+      </mat-error>
+    </mat-form-field>
 
-      
-
-        <mat-form-field>
-            <input name="password" formControlName="PassWord" type="password" matInput placeholder="Password">
-            <mat-error *ngIf="formLogin.controls.PassWord.hasError('required')">
-                {{errorMesageRequired}}
-            </mat-error>
-            <mat-error *ngIf="formLogin.controls.PassWord.hasError('rangeLength')">
-                Password have less then 5 caracters or more then 9
-            </mat-error>
-        </mat-form-field>
-    
-        <button [disabled]="!formLogin.valid" type="submit" class="info" mat-button>Login</button>
-        <button  type="button" routerLink="/User/create" mat-button>Create Account</button>
-
+    <mat-form-field>
+      <input
+        name="password"
+        formControlName="PassWord"
+        type="password"
+        matInput
+        placeholder="Password"
+      />
+      <mat-error *ngIf="formLogin.controls.PassWord.hasError('required')">
+        {{ errorMesageRequired }}
+      </mat-error>
+      <mat-error *ngIf="formLogin.controls.PassWord.hasError('rangeLength')">
+        Password have less then 5 caracters or more then 9
+      </mat-error>
+    </mat-form-field>
+    <div style="margin-bottom: 1%;">
+        <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
     </div>
 
+    <button [disabled]="!formLogin.valid || isLoading" type="submit" class="info" mat-button>
+      Login
+    </button>
+    <button type="button" routerLink="/User/create" mat-button>
+      Create Account
+    </button>
+  </div>
 </form>

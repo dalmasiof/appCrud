@@ -10,13 +10,13 @@ import { LoggedUserService } from 'src/app/core/Services/loggedUser/logged-user.
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
-  formLogin!: FormGroup
-  errorMesageRequired: string = "Please input something..."
+  formLogin!: FormGroup;
+  errorMesageRequired: string = 'Please input something...';
   returnUrl!: string;
+  isLoading: boolean = false;
 
 
   constructor(private fb: FormBuilder, private userSvc: UserServiceService,
@@ -32,17 +32,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.localstrg.clearUser();
     this.formLogin = this.fb.group({
       Email: ['', Validators.required],
-      PassWord: ['', Validators.required]
-    })
-
+      PassWord: ['', Validators.required],
+    });
   }
 
   onFormSubmit() {
-
+    this.isLoading = true;
     let userModel = Object.assign({}, this.formLogin.value);
 
     this.userSvc.Login(userModel).subscribe((x) => {
@@ -59,6 +57,13 @@ export class LoginComponent implements OnInit {
         this.toastvc.error("Error: " + error.statusText)
       }))
 
+        // this.localstrg.setUser(x);
+      },
+      (error) => {
+        this.isLoading = false;
+        this.toastvc.error('Error: '+error.statusText,"Status: "+error.status);
+      },
+      ()=>this.isLoading=false
+    );
   }
-
 }

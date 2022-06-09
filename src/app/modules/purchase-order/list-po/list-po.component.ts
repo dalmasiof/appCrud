@@ -36,5 +36,4 @@ export class ListPoComponent implements OnInit {
   redirectInfo(id:number){
     this.router.navigate(['PurchaseOrder/purchaseOrderById',id])
   }
-
 }

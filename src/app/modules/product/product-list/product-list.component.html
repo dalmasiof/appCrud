@@ -1,9 +1,5 @@
-<div  fxLayout="row wrap"  fxFlexOffset.xs="30"  fxFlexOffset="20" gdGap="30px 30px" fxLayoutGap="32px" fxLayoutAlign="flex-start" >
-
-    <app-card class="flex-container" style="width: 200px;" *ngFor="let prod of products | async" [product]="prod">
-        
+<div class="flex-container">
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <app-card class="card"  *ngFor="let prod of products " [product]="prod">
     </app-card>
-    <!-- <button  mat-button (click)="fillList()" class="success">Add</button> -->
-
-    
 </div>

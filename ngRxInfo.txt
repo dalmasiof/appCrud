@@ -1,0 +1,7 @@
+Ngrx SideEffects
+Is an extra action we do in the application in order of dome especific dispatch 
+Main class should be in nowhere just with the NgRx main service
+
+subscrib to the action to to some side action
+
+use {dispatch:false} to not do infinit loops since effect could dispatch the ngrx observable

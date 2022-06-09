@@ -59,13 +59,24 @@ export class NavBarComponent implements OnInit {
       this.countProds = qtdProdOnCart
 
   }
-
+  verifyUser() {
+    let user = localStorage.getItem('user');
+    if (user != null) {
+      let jsonUser = JSON.parse(user);
+      this.userEmail = jsonUser.name;
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
+  }
   logOut() {
     this.loggedSvc.set(false);
     
   }
 
   openDialog() {
-    this.dialog.open(ListProductsComponent);
+    this.dialog.open(ListProductsComponent, {
+      width: '600px',
+    });
   }
 }

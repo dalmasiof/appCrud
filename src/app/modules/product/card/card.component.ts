@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { ProductService } from 'src/app/core/Services/prodService/product.service';
 import { ProductModel } from 'src/app/shared/Model/ProductModel';

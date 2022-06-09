@@ -27,9 +27,9 @@ export class httpInterceptor implements HttpInterceptor {
                     err => {
                         if (err instanceof HttpErrorResponse) {
 
-                            if (err.status === 400) {
-                                debugger
-                                this.toastr.error("Error: " + err.error)
+                            if (err.status === 401) {
+                                
+                                return  throwError(err); 
                             }
 
                             else if (err.status === 500) {
@@ -45,7 +45,7 @@ export class httpInterceptor implements HttpInterceptor {
         }
         else {
             
-            let user: any = JSON.parse(localStorage.getItem(environment.UserLocalStorage)!)
+            let user: any = JSON.parse(localStorage.getItem('user')!)
             let token = '';
 
             if (user != null) {

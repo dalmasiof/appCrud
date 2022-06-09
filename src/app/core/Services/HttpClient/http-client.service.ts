@@ -23,6 +23,10 @@ export class HttpClientService<T>{
     return this.http.get<T>(`${this.baseUrl}${path}/${Id}`);
   }
 
+  GetByUserId(path:string,Id: number): Observable<T[]> {
+    return this.http.get<T[]>(`${this.baseUrl}${path}/${Id}`);
+  }
+
   Filter(path:string,objFilter: T): Observable<T[]> {
     return this.http.post<T[]>(`${this.baseUrl}${path}`,objFilter);
   }
