@@ -1,3 +1,3 @@
 export interface BaseENtityVM{
-    Id:number
+    id:number
 }

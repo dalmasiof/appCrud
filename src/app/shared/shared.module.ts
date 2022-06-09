@@ -22,6 +22,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { LocalStorageService } from './Services/LocalStorage/local-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserInfoService } from './Services/UserService/user-info.service';
+import { PurchaseOrderService } from './Services/purchaseOrderService/purchase-order.service';
 
 
 
@@ -74,7 +75,8 @@ import { UserInfoService } from './Services/UserService/user-info.service';
 
     LocalStorageService,
     ToastrService,
-    UserInfoService
+    UserInfoService,
+    PurchaseOrderService
   ]
 })
 export class SharedModule { }
