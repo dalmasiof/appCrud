@@ -7,13 +7,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { UserServiceService } from './services/user-service.service';
-import { ListUserComponent } from './list-user/list-user.component';
 import { BaseGuard } from 'src/app/core/Services/guards/base.guard';
 import { StoreModule } from '@ngrx/store';
 import * as fromUserStore from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { LoginEffects } from './login.effects';
-import { EditUserComponent } from './edit-user/edit-user.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const routes: Routes = [
@@ -29,25 +27,10 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
   },
-  {
-    path: 'list',
-    component: ListUserComponent,
-    canActivate: [BaseGuard],
-  },
-  {
-    path: 'edit',
-    component: EditUserComponent,
-    canActivate: [BaseGuard],
-  },
 ];
 
 @NgModule({
-  declarations: [
-    CreateUserComponent,
-    LoginComponent,
-    ListUserComponent,
-    EditUserComponent,
-  ],
+  declarations: [CreateUserComponent, LoginComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -55,9 +38,9 @@ const routes: Routes = [
     MatProgressBarModule,
     StoreModule.forFeature(
       fromUserStore.userStoreFeatureKey,
-      fromUserStore.LoginReducer,
+      fromUserStore.LoginReducer
     ),
-    
+
     EffectsModule.forFeature([LoginEffects]),
   ],
   providers: [UserServiceService],
