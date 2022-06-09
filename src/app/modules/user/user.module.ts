@@ -10,11 +10,16 @@ import { BaseGuard } from 'src/app/core/Services/guards/base.guard';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'create',
+    component: CreateComponent,
   },
   {
     path: '',
@@ -23,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, CreateComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

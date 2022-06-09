@@ -1,0 +1,61 @@
+<form (submit)="onFormSubmit()" [formGroup]="cadForm">
+  
+    <div fxLayout="column" fxLayoutAlign="space-between" fxFlexOffset="20" fxFlex="60">
+        <div>
+            <mat-label id="labelUser">
+                Create user
+            </mat-label>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-form-field>
+            <input formControlName="Name" matInput placeholder="Name">
+            <mat-error *ngIf="cadForm.controls.Name.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="email" formControlName="Email" matInput placeholder="Email">
+            <mat-error *ngIf="cadForm.controls.Email.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error>
+            <mat-error *ngIf="cadForm.controls.Email.hasError('email')">
+                Email incorrect
+            </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <input name="password" formControlName="PassWord" type="password" matInput placeholder="Password">
+            <mat-error *ngIf="cadForm.controls.PassWord.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error>
+            <mat-error *ngIf="cadForm.controls.PassWord.hasError('rangeLength')">
+                Password have less then 5 caracters or more then 9
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="confirmPassword" formControlName="ConfirmPassword" type="password" matInput
+                placeholder="Confirm Password">
+            <mat-error *ngIf="cadForm.controls.ConfirmPassword.hasError('required')">
+                {{errorMesageRequired}}
+            </mat-error>
+            
+            <mat-error *ngIf="cadForm.controls.ConfirmPassword.hasError('equalTo')">
+                Passwords not match...
+            </mat-error>
+
+            <mat-error *ngIf="cadForm.controls.ConfirmPassword.hasError('rangeLength')">
+                Password have less then 5 caracters or more then 9
+            </mat-error>
+
+        </mat-form-field>
+      
+
+        <button [disabled]="!cadForm.valid" type="submit" mat-button>Submit</button>
+    </div>
+
+</form>
