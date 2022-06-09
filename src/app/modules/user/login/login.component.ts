@@ -5,6 +5,7 @@ import { LocalStorageService } from 'src/app/shared/Services/LocalStorage/local-
 import { UserServiceService } from 'src/app/modules/user/services/user-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
+import { LoggedUserService } from 'src/app/core/Services/loggedUser/logged-user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   returnUrl!: string;
 
 
-  constructor(private fb: FormBuilder, private userSvc: UserServiceService
+  constructor(private fb: FormBuilder, private userSvc: UserServiceService,
+    private loggedUser:LoggedUserService
     , private localstrg: LocalStorageService
     , private route: Router
     , private activeRoute:ActivatedRoute
@@ -47,8 +49,8 @@ export class LoginComponent implements OnInit {
       this.toastvc.success("Log-in successful!")
 
       this.returnUrl ? this.route.navigateByUrl(this.returnUrl)
-      : this.route.navigateByUrl('')
-         
+      : this.route.navigateByUrl('Product/list')
+      this.loggedUser.set(true)
       this.localstrg.setUser(x);
 
     },

@@ -16,9 +16,12 @@ export class BaseGuard implements CanActivate {
   /**
    *
    */
-  constructor(private router: Router) {}
+  constructor(private router: Router, private localoStrg:LocalStorageService) {}
   canActivate(): boolean {
-    debugger;
-    return true;
+    if(this.localoStrg.getUser()){
+      return true;
+    }
+    else  
+      return false;
   }
 }

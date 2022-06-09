@@ -2,9 +2,9 @@ import { BaseENtityVM } from "./BaseEntityVM"
 
 export interface UserModel extends BaseENtityVM {
 
-    Name: string
-    Email: string
-    PassWord: string
-    ConfirmPassword: string
+    name: string
+    email: string
+    passWord: string
+    confirmPassword: string
     
 }

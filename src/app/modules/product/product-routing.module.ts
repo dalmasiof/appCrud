@@ -6,7 +6,7 @@ import { ProductResolver } from './services/resolves/product.resolver';
 
 
 const routes: Routes = [
-  { path: 'list', component: ProductListComponent },
+  { path: 'list', component: ProductListComponent, canActivate:[BaseGuard] },
 ];
 
 @NgModule({
