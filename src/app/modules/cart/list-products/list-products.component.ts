@@ -78,7 +78,7 @@ export class ListProductsComponent implements OnInit {
       this.dialogRef.close()
       this.toastSvc.success("Succes on create purchase Order","Success")
 
-      // this.router.navigateByUrl('PurchaseOrder/list')
+      this.router.navigateByUrl('PurchaseOrder/list')
     },
     (err)=>{
       this.toastSvc.error("Error on create Purchase Order","Status "+err.status)

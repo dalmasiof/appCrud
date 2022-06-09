@@ -1,0 +1,17 @@
+<div class="mainContainer">
+    <div class="title" *ngIf="!isLoading && poList?.length == 0">
+      <strong><h1>No PO`s registered.</h1></strong>
+    </div>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <div class="poContainer" *ngFor="let item of poList">
+      <div class="prodInfo mat-elevation-z2">
+        <span> PuchaseOrder Id: <strong>{{ item.id }}</strong> </span>
+        <span> Status Delivery: <strong>{{ item.statusDelivery }}</strong> </span
+        ><span> Status: <strong>{{ item.statusPO }}</strong> </span>
+        <span> Total: <strong>{{ item.total | currency }}</strong> </span>
+        <a href="#" routerLink="" (click)="redirectInfo(item.id)">
+          Check Po Info  
+        </a>
+      </div>
+    </div>
+  </div>
