@@ -9,9 +9,9 @@ import { UserServiceService } from './services/user-service.service';
 import { BaseGuard } from 'src/app/core/Services/guards/base.guard';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const routes: Routes = [
-
   {
     path: 'login',
     component: LoginComponent,
@@ -23,15 +23,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-
-    LoginComponent
-
-  ],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
+    MatProgressBarModule,
   ],
   providers: [UserServiceService],
 })

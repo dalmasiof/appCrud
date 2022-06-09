@@ -18,17 +18,16 @@ export class LoginComponent implements OnInit {
   returnUrl!: string;
   isLoading: boolean = false;
 
-
-  constructor(private fb: FormBuilder, private userSvc: UserServiceService,
-    private loggedUser:LoggedUserService
-    , private localstrg: LocalStorageService
-    , private route: Router
-    , private activeRoute:ActivatedRoute
-    , private toastvc: ToastrService
-) {
- 
-      this.returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'];
-
+  constructor(
+    private fb: FormBuilder,
+    private userSvc: UserServiceService,
+    private loggedUser: LoggedUserService,
+    private localstrg: LocalStorageService,
+    private route: Router,
+    private activeRoute: ActivatedRoute,
+    private toastvc: ToastrService
+  ) {
+    this.returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'];
   }
 
   ngOnInit(): void {
@@ -43,27 +42,25 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     let userModel = Object.assign({}, this.formLogin.value);
 
-    this.userSvc.Login(userModel).subscribe((x) => {
-      this.toastvc.success("Log-in successful!")
+    this.userSvc.Login(userModel).subscribe(
+      (x) => {
+        this.toastvc.success('Log-in successful!');
 
-      this.returnUrl ? this.route.navigateByUrl(this.returnUrl)
-      : this.route.navigateByUrl('Product/list')
-      this.loggedUser.set(true)
-      this.localstrg.setUser(x);
-
-    },
-      (error => {
-        console.log(error)
-        this.toastvc.error("Error: " + error.statusText)
-      }))
-
-        // this.localstrg.setUser(x);
+        this.returnUrl
+          ? this.route.navigateByUrl(this.returnUrl)
+          : this.route.navigateByUrl('Product/list');
+        this.loggedUser.set(true);
+        this.localstrg.setUser(x);
       },
+
       (error) => {
         this.isLoading = false;
-        this.toastvc.error('Error: '+error.statusText,"Status: "+error.status);
+        this.toastvc.error(
+          'Error: ' + error.statusText,
+          'Status: ' + error.status
+        );
       },
-      ()=>this.isLoading=false
+      () => (this.isLoading = false)
     );
   }
 }

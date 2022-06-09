@@ -47,8 +47,6 @@ export class HttpClientService<T>{
     return this.http.post<UserModel>(`${this.baseUrl}${path}`,objUser);
   }
 
-  GetByUserId(path:string,Id: number): Observable<T[]> {
-    return this.http.get<T[]>(`${this.baseUrl}${path}/${Id}`);
-  }
+
   
 }

@@ -32,11 +32,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule
-<<<<<<< HEAD
   ]
-=======
-  ],
-  providers:[PurchaseOrderService]
->>>>>>> master
 })
 export class PurchaseOrderModule { }

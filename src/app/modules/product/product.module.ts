@@ -4,7 +4,6 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { ProductRoutingModule } from './product-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import localePt from '@angular/common/locales/pt';
-import * as fromProdStore from './reducers';
 
 registerLocaleData(localePt);
 
@@ -20,7 +19,6 @@ import { ProductResolver } from './services/resolves/product.resolver';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { StoreModule } from '@ngrx/store';
-import { ProductEffects } from './product.effects';
 import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
@@ -38,13 +36,9 @@ import { EffectsModule } from '@ngrx/effects';
     NgBrazil,
     TextMaskModule,
     MatTooltipModule,
-    MatProgressBarModule,
-    StoreModule.forFeature(
-      fromProdStore.prodStoreFeatureKey,
-      fromProdStore.ProductReducer
-    ),
-    EffectsModule.forFeature([ProductEffects]),
+    MatProgressBarModule
+  
   ],
-  providers: [ProductsService, ProductResolver],
+  providers: [ProductsService],
 })
 export class ProductModule {}

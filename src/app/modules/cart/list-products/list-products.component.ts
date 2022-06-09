@@ -37,7 +37,6 @@ export class ListProductsComponent implements OnInit {
     })
     this.userInfo = this.localStrgSvc.getUser()
 
-    this.countItens();
   }
 
   ngOnInit(): void {}
@@ -59,7 +58,6 @@ export class ListProductsComponent implements OnInit {
   }
 
   onBtnFinishrOrder() {
-    debugger
     this.isLoading = true
     let objPo: PurchaseModelVM = {
       id: 0,

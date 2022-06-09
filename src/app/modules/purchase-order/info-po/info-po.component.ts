@@ -107,8 +107,4 @@ export class InfoPoComponent implements OnInit {
     );
   }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 }

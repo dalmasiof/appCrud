@@ -75,11 +75,8 @@ import { PurchaseOrderService } from './Services/purchaseOrderService/purchase-o
 
     LocalStorageService,
     ToastrService,
-<<<<<<< HEAD
     UserInfoService,
     PurchaseOrderService
-=======
->>>>>>> master
   ]
 })
 export class SharedModule { }
