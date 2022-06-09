@@ -19,7 +19,12 @@ export class CardComponent implements OnInit {
     private prodSvc: ProductService,
 
     
-  ) {}
+  ) {
+    this.prodSvc.prodQtd.subscribe((x)=>{
+      this.verifyProdOnList()
+
+    })
+  }
 
   ngOnInit(): void {
     this.verifyProdOnList();
