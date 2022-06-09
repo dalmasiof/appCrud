@@ -10,6 +10,10 @@ margin-left: 2%;
     flex: 1 1 auto;
   }
 
-  .routeActive{
-      color: blue;
+  nav{
+    /* top: 0; */
+    position: fixed;
+    width: 100%;
+    z-index: 2;
   }
+

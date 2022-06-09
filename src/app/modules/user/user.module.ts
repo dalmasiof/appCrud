@@ -7,8 +7,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { UserServiceService } from './services/user-service.service';
 import { BaseGuard } from 'src/app/core/Services/guards/base.guard';
-
-
+import { StoreModule } from '@ngrx/store';
+import * as fromUserStore from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { LoginEffects } from './login.effects';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const routes: Routes = [
 
@@ -29,10 +32,14 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-  ],
-  providers:[
-    UserServiceService
-  ]
+    MatProgressBarModule,
+    StoreModule.forFeature(
+      fromUserStore.userStoreFeatureKey,
+      fromUserStore.LoginReducer
+    ),
 
+    EffectsModule.forFeature([LoginEffects]),
+  ],
+  providers: [UserServiceService],
 })
-export class UserModule { }
+export class UserModule {}

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  urlBaseAPI:"http://localhost:5000/",
-  UserLocalStorage:"User"
+  urlBaseAPI:"https://dal-crud-api.herokuapp.com/",
+  
 };
 
 /*
